@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-05-01T11:29:17</date>
+  <millis>1462094957781</millis>
+  <sequence>0</sequence>
+  <logger>rezervace.HibernateUtil</logger>
+  <level>INFO</level>
+  <class>rezervace.HibernateUtil</class>
+  <method>buildSessionFactory</method>
+  <thread>1</thread>
+  <message>Initializing hibernate.</message>
+</record>
+<record>
+  <date>2016-05-01T11:29:18</date>
+  <millis>1462094958103</millis>
+  <sequence>1</sequence>
+  <logger>org.hibernate.validator.internal.util.Version</logger>
+  <level>INFO</level>
+  <class>org.hibernate.validator.internal.util.Version</class>
+  <method>&lt;clinit&gt;</method>
+  <thread>1</thread>
+  <message>HV000001: Hibernate Validator 5.2.4.Final</message>
+</record>
+<record>
+  <date>2016-05-01T11:29:18</date>
+  <millis>1462094958572</millis>
+  <sequence>2</sequence>
+  <logger>dao_impl.CommonDAOImpl</logger>
+  <level>SEVERE</level>
+  <class>dao_impl.CommonDAOImpl</class>
+  <method>addEntity</method>
+  <thread>1</thread>
+  <exception>
+    <message>org.hibernate.exception.SQLGrammarException: could not fetch initial value for increment generator</message>
+    <frame>
+      <class>org.hibernate.exception.SQLStateConverter</class>
+      <method>convert</method>
+      <line>92</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.exception.JDBCExceptionHelper</class>
+      <method>convert</method>
+      <line>66</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.id.IncrementGenerator</class>
+      <method>initializePreviousValueHolder</method>
+      <line>147</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.id.IncrementGenerator</class>
+      <method>generate</method>
+      <line>67</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.AbstractSaveEventListener</class>
+      <method>saveWithGeneratedId</method>
+      <line>121</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.DefaultSaveOrUpdateEventListener</class>
+      <method>saveWithGeneratedOrRequestedId</method>
+      <line>210</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.DefaultSaveEventListener</class>
+      <method>saveWithGeneratedOrRequestedId</method>
+      <line>56</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.DefaultSaveOrUpdateEventListener</class>
+      <method>entityIsTransient</method>
+      <line>195</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.DefaultSaveEventListener</class>
+      <method>performSaveOrUpdate</method>
+      <line>50</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.event.def.DefaultSaveOrUpdateEventListener</class>
+      <method>onSaveOrUpdate</method>
+      <line>93</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.impl.SessionImpl</class>
+      <method>fireSave</method>
+      <line>713</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.impl.SessionImpl</class>
+      <method>save</method>
+      <line>701</line>
+    </frame>
+    <frame>
+      <class>org.hibernate.impl.SessionImpl</class>
+      <method>save</method>
+      <line>697</line>
+    </frame>
+    <frame>
+      <class>dao_impl.CommonDAOImpl</class>
+      <method>addEntity</method>
+      <line>83</line>
+    </frame>
+    <frame>
+      <class>dao_impl.UserDAOImpl</class>
+      <method>addUser</method>
+      <line>36</line>
+    </frame>
+    <frame>
+      <class>rezervace.Main</class>
+      <method>createIlustrationData</method>
+      <line>80</line>
+    </frame>
+    <frame>
+      <class>rezervace.Main</class>
+      <method>main</method>
+      <line>51</line>
+    </frame>
+  </exception>
+</record>
+</log>
