@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.Building;
 import model.Equipment;
 import model.Room;
 import model.Tag;
@@ -78,9 +79,18 @@ public class RoomDAOImplTest {
     public void testAddRoom() {
         System.out.println("addRoom");
         Room room = new Room();
-        RoomDAOImpl instance = new RoomDAOImpl();
-        Room result = instance.addRoom(room);
-        assertNotNull(result.getId());
+        
+        BuildingDAOImpl buildingDao = new BuildingDAOImpl();
+        Building building = buildingDao.addBuilding(
+                new Building("testBuilding", "999666333", "test@test.test", "adressTest")
+        );
+        
+        room.setBuilding( building );
+        RoomDAOImpl roomDao = new RoomDAOImpl();
+        Room result = roomDao.addRoom(room);
+        
+        assertNotNull(result.getId());;
+        assertNotNull(result.getBuilding().getId());
     }
 
     /**

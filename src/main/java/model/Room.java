@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -27,6 +28,10 @@ public class Room implements Serializable, DataClass {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Integer id;
 
+    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @JoinColumn(name = "building_id")
+    private Building building;
+    
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "room_tag", joinColumns = {
         @JoinColumn(name = "room_id", nullable = false, updatable = false)},
@@ -47,6 +52,10 @@ public class Room implements Serializable, DataClass {
 
     }
 
+    public Room(Building building) {
+        this.building = building;
+    }
+
     @Override
     public Integer getId() {
         return id;
@@ -55,6 +64,14 @@ public class Room implements Serializable, DataClass {
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Building getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public Set<Tag> getTags() {
@@ -75,7 +92,7 @@ public class Room implements Serializable, DataClass {
     
     @Override
     public String toString() {
-        return "id: " + id;
+        return "Room: {\"id\": " + id + ", \"building\" : {" + building.toString() + "}";
     }
 
 }
