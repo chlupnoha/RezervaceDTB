@@ -26,6 +26,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import model.Building;
 import model.Confirmed;
+import model.Image;
 import model.Rezervation;
 import model.Room;
 import model.User;
@@ -129,7 +130,7 @@ public class RezervationDAOImpTest {
         
         assertNotNull(result.getId());
     }
-
+    
 //    /**
 //     * Test of updateRezervation method, of class RezervationDAOImp.
 //     */

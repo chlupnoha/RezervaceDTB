@@ -2,12 +2,17 @@ package model;
 
 import dao_impl.DataClass;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
@@ -39,6 +44,14 @@ public class Building implements Serializable, DataClass {
     
     @NotNull
     private String adress; 
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "building_image", joinColumns = {
+        @JoinColumn(name = "building_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "image_id",
+                        nullable = false, updatable = false)})
+    private Set<Image> images = new HashSet<>(0);
 
     public Building(){
         
@@ -91,6 +104,14 @@ public class Building implements Serializable, DataClass {
 
     public void setAdress(String adress) {
         this.adress = adress;
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
     
     @Override

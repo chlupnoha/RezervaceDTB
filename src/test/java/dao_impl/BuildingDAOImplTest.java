@@ -16,8 +16,19 @@
  */
 package dao_impl;
 
+import dao.RoomDAO;
+import dao.UserDAO;
+import java.util.Arrays;
+import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.List;
 import model.Building;
+import model.Confirmed;
+import model.Image;
+import model.Rezervation;
+import model.Room;
+import model.User;
+import model.UserRole;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -75,6 +86,21 @@ public class BuildingDAOImplTest {
         BuildingDAOImpl buldingDaon = new BuildingDAOImpl();
         Building result = buldingDaon.addBuilding(building);
         assertNotNull(result.getId());
+    }
+    
+    
+    /**
+     * Test of addRezervation method, of class RezervationDAOImp.
+     */
+    @Test
+    public void testAddImageToRezervation() {
+        System.out.println("add image to building");
+        Building building = new Building("testBuilding2", "999666333", "test2@test.test", "adressTest2");
+        building.setImages(new HashSet(Arrays.asList(new Image[]{new Image("testImage")})));
+        BuildingDAOImpl buldingDao = new BuildingDAOImpl();
+        Building result = buldingDao.addBuilding(building);
+        assertNotNull(result.getId());
+        assertEquals(result.getImages().size(), 1);
     }
 
 //    /**
