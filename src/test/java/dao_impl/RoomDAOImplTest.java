@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Set;
 import model.Building;
 import model.Equipment;
+import model.Image;
 import model.Room;
 import model.Tag;
 import org.junit.After;
@@ -125,6 +126,22 @@ public class RoomDAOImplTest {
         Room r = roomDao.addEntity(room);
         
         assertEquals(r.getEquipment().size(), 1);
+    }
+
+    /**
+     * Test of addRoom method, of class RoomDAOImpl.
+     */
+    @Test
+    public void testAddRoomImages() {
+        System.out.println("add room equipment");
+        
+        Room room = new Room();
+        RoomDAOImpl roomDao = new RoomDAOImpl();
+        
+        room.setImages(new HashSet(Arrays.asList(new Image[]{new Image("testImage")})));
+        Room r = roomDao.addEntity(room);
+        
+        assertEquals(r.getImages().size(), 1);
     }
 
 //    /**
