@@ -16,8 +16,13 @@
  */
 package dao_impl;
 
+import dao.TagDAO;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import model.Room;
+import model.Tag;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -64,7 +69,6 @@ public class RoomDAOImplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
     /**
      * Test of addRoom method, of class RoomDAOImpl.
      */
@@ -75,6 +79,22 @@ public class RoomDAOImplTest {
         RoomDAOImpl instance = new RoomDAOImpl();
         Room result = instance.addRoom(room);
         assertNotNull(result.getId());
+    }
+
+    /**
+     * Test of addRoom method, of class RoomDAOImpl.
+     */
+    @Test
+    public void testAddRoomTag() {
+        System.out.println("addRoom");
+        
+        Room room = new Room();
+        RoomDAOImpl roomDao = new RoomDAOImpl();
+        
+        room.setTags(new HashSet(Arrays.asList(new Tag[]{new Tag("testTag")})));
+        Room r = roomDao.addEntity(room);
+        
+        assertEquals(r.getTags().size(), 1);
     }
 
 //    /**
@@ -120,5 +140,4 @@ public class RoomDAOImplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-    
 }
