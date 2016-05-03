@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import model.Building;
 import model.Confirmed;
 import model.Rezervation;
 import model.Room;
@@ -107,7 +108,10 @@ public class RezervationDAOImpTest {
         User addUser = userDAO.addUser(user);
         System.out.println(addUser.toString());
         
-        Room room = new Room();
+        BuildingDAOImpl buildingDao = new BuildingDAOImpl();
+        Building building = buildingDao.addBuilding(new Building("name", "888777666", "test@test.cz", "adress"));
+        
+        Room room = new Room(building);
         RoomDAO roomDAO = new RoomDAOImpl();
         Room addRoom = roomDAO.addRoom(room);
         System.out.println(addRoom.toString());
