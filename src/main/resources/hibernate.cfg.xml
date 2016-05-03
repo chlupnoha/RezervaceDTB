@@ -24,5 +24,6 @@
     <mapping class="model.Tag"/>
     <mapping class="model.Equipment"/>
     <mapping class="model.Building"/>
+    <mapping class="model.Image"/>
   </session-factory>
 </hibernate-configuration>
