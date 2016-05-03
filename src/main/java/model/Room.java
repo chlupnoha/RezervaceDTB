@@ -35,6 +35,14 @@ public class Room implements Serializable, DataClass {
                         nullable = false, updatable = false)})
     private Set<Tag> tags = new HashSet<>(0);
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "room_equipment", joinColumns = {
+        @JoinColumn(name = "room_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {
+                @JoinColumn(name = "equipment_id",
+                        nullable = false, updatable = false)})
+    private Set<Equipment> equipment = new HashSet<>(0);
+
     public Room() {
 
     }
@@ -57,6 +65,14 @@ public class Room implements Serializable, DataClass {
         this.tags = tags;
     }
 
+    public Set<Equipment> getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Set<Equipment> equipment) {
+        this.equipment = equipment;
+    }
+    
     @Override
     public String toString() {
         return "id: " + id;

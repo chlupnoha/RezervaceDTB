@@ -16,11 +16,13 @@
  */
 package dao_impl;
 
+import dao.RoomDAO;
 import dao.TagDAO;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import model.Equipment;
 import model.Room;
 import model.Tag;
 import org.junit.After;
@@ -95,6 +97,22 @@ public class RoomDAOImplTest {
         Room r = roomDao.addEntity(room);
         
         assertEquals(r.getTags().size(), 1);
+    }
+
+    /**
+     * Test of addRoom method, of class RoomDAOImpl.
+     */
+    @Test
+    public void testAddRoomEquipment() {
+        System.out.println("add room equipment");
+        
+        Room room = new Room();
+        RoomDAOImpl roomDao = new RoomDAOImpl();
+        
+        room.setEquipment(new HashSet(Arrays.asList(new Equipment[]{new Equipment("testEquipment")})));
+        Room r = roomDao.addEntity(room);
+        
+        assertEquals(r.getEquipment().size(), 1);
     }
 
 //    /**
