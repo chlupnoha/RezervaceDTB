@@ -23,5 +23,6 @@
     <mapping class="model.Rezervation"/>
     <mapping class="model.Tag"/>
     <mapping class="model.Equipment"/>
+    <mapping class="model.Building"/>
   </session-factory>
 </hibernate-configuration>
