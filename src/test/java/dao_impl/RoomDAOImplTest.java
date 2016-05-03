@@ -89,6 +89,8 @@ public class RoomDAOImplTest {
         RoomDAOImpl roomDao = new RoomDAOImpl();
         Room result = roomDao.addRoom(room);
         
+        //test
+        
         assertNotNull(result.getId());;
         assertNotNull(result.getBuilding().getId());
     }
