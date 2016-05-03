@@ -22,5 +22,6 @@
     <mapping class="model.Room"/>
     <mapping class="model.Rezervation"/>
     <mapping class="model.Tag"/>
+    <mapping class="model.Equipment"/>
   </session-factory>
 </hibernate-configuration>
