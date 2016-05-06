@@ -7,6 +7,7 @@ package dao;
 import model.Rezervation;
 import org.hibernate.Session;
 
+import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 
 /**
@@ -22,6 +23,12 @@ public class RezervationDAOImp extends CommonDAOImpl<Rezervation> {
 
     public RezervationDAOImp(Session session) {
         super(Rezervation.class, session);
+    }
+
+    @Override
+    public Rezervation add(Rezervation rezervation) {
+        rezervation.setCreated(new GregorianCalendar());
+        return rezervation;
     }
 
 }
