@@ -16,42 +16,35 @@
  */
 package dao_impl;
 
+import model.*;
+import org.junit.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
-import model.Building;
-import model.Equipment;
-import model.Image;
-import model.Room;
-import model.Tag;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
- *
  * @author chlupnoha
  */
 public class RoomDAOImplTest {
-    
+
     public RoomDAOImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -70,6 +63,7 @@ public class RoomDAOImplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
+
     /**
      * Test of addRoom method, of class RoomDAOImpl.
      */
@@ -77,19 +71,20 @@ public class RoomDAOImplTest {
     public void testAddRoom() {
         System.out.println("addRoom");
         Room room = new Room();
-        
+
         BuildingDAOImpl buildingDao = new BuildingDAOImpl();
-        Building building = buildingDao.addBuilding(
+        Building building = buildingDao.add(
                 new Building("testBuilding", "999666333", "test@test.test", "adressTest")
         );
-        
-        room.setBuilding( building );
+
+        room.setBuilding(building);
         RoomDAOImpl roomDao = new RoomDAOImpl();
-        Room result = roomDao.addRoom(room);
-        
+        Room result = roomDao.add(room);
+
         //test
-        
-        assertNotNull(result.getId());;
+
+        assertNotNull(result.getId());
+        ;
         assertNotNull(result.getBuilding().getId());
     }
 
@@ -99,13 +94,13 @@ public class RoomDAOImplTest {
     @Test
     public void testAddRoomTag() {
         System.out.println("addRoom");
-        
+
         Room room = new Room();
         RoomDAOImpl roomDao = new RoomDAOImpl();
-        
+
         room.setTags(new HashSet(Arrays.asList(new Tag[]{new Tag("testTag")})));
-        Room r = roomDao.addEntity(room);
-        
+        Room r = roomDao.add(room);
+
         assertEquals(r.getTags().size(), 1);
     }
 
@@ -115,13 +110,13 @@ public class RoomDAOImplTest {
     @Test
     public void testAddRoomEquipment() {
         System.out.println("add room equipment");
-        
+
         Room room = new Room();
         RoomDAOImpl roomDao = new RoomDAOImpl();
-        
+
         room.setEquipment(new HashSet(Arrays.asList(new Equipment[]{new Equipment("testEquipment")})));
-        Room r = roomDao.addEntity(room);
-        
+        Room r = roomDao.add(room);
+
         assertEquals(r.getEquipment().size(), 1);
     }
 
@@ -131,13 +126,13 @@ public class RoomDAOImplTest {
     @Test
     public void testAddRoomImages() {
         System.out.println("add room equipment");
-        
+
         Room room = new Room();
         RoomDAOImpl roomDao = new RoomDAOImpl();
-        
+
         room.setImages(new HashSet(Arrays.asList(new Image[]{new Image("testImage")})));
-        Room r = roomDao.addEntity(room);
-        
+        Room r = roomDao.add(room);
+
         assertEquals(r.getImages().size(), 1);
     }
 

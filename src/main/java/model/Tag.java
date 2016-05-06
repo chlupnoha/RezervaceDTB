@@ -1,16 +1,12 @@
 package model;
 
 import dao_impl.DataClass;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -22,18 +18,18 @@ public class Tag implements Serializable, DataClass {
     @Column(unique = true, nullable = false)
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer id;
-    
-    
+    private Long id;
+
+
     @Column(unique = true)
     private String name;
-    
-    
+
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
     private Set<Room> rooms = new HashSet<>();
-        
-    public Tag(){
-        
+
+    public Tag() {
+
     }
 
     public Tag(String name) {
@@ -41,12 +37,12 @@ public class Tag implements Serializable, DataClass {
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,10 +61,10 @@ public class Tag implements Serializable, DataClass {
     public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
-    
+
     @Override
     public String toString() {
-        return "Tag: { id: " +  id + ", name: " + name +  "}";
+        return "Tag: { id: " + id + ", name: " + name + "}";
     }
-   
+
 }

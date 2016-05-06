@@ -16,43 +16,34 @@
  */
 package dao_impl;
 
+import model.*;
+import org.junit.*;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import model.Building;
-import model.Confirmed;
-import model.Rezervation;
-import model.Room;
-import model.User;
-import model.UserRole;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
- *
  * @author chlupnoha
  */
 public class RezervationDAOImpTest {
-    
+
     public RezervationDAOImpTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -97,34 +88,34 @@ public class RezervationDAOImpTest {
     @Test
     public void testAddRezervation() {
         System.out.println("addRezervation");
-        
+
         User user = new User("rezervation@rezervation.cz", "password", "salt_salt", UserRole.GUEST);
-        UserDAO userDAO = new UserDAOImpl();
-        User addUser = userDAO.addUser(user);
+        UserDAOImpl userDAO = new UserDAOImpl();
+        User addUser = userDAO.add(user);
         System.out.println(addUser.toString());
-        
+
         BuildingDAOImpl buildingDao = new BuildingDAOImpl();
-        Building building = buildingDao.addBuilding(new Building("name", "888777666", "test@test.cz", "adress"));
-        
+        Building building = buildingDao.add(new Building("name", "888777666", "test@test.cz", "adress"));
+
         Room room = new Room(building);
-        RoomDAO roomDAO = new RoomDAOImpl();
-        Room addRoom = roomDAO.addRoom(room);
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        Room addRoom = roomDAO.add(room);
         System.out.println(addRoom.toString());
-        
-        
-	Calendar from = new GregorianCalendar(2013,0,31);
-	Calendar to = new GregorianCalendar(2013,3,31);
-        
+
+
+        Calendar from = new GregorianCalendar(2013, 0, 31);
+        Calendar to = new GregorianCalendar(2013, 3, 31);
+
         Rezervation rezervation = new Rezervation(from, to, Confirmed.CONFIRMED, user, room);
-        
+
         RezervationDAOImp instance = new RezervationDAOImp();
-        Rezervation result = instance.addRezervation(rezervation);
-        
+        Rezervation result = instance.add(rezervation);
+
         System.out.println(result.toString());
-        
+
         assertNotNull(result.getId());
     }
-    
+
 //    /**
 //     * Test of updateRezervation method, of class RezervationDAOImp.
 //     */
@@ -168,5 +159,5 @@ public class RezervationDAOImpTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-    
+
 }

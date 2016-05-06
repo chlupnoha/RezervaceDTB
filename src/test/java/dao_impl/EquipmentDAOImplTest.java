@@ -16,14 +16,10 @@
  */
 package dao_impl;
 
-import java.util.List;
 import model.Equipment;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  *
@@ -73,7 +69,7 @@ public class EquipmentDAOImplTest {
         System.out.println("addEquipment");
         Equipment equipment = new Equipment("testEquipment");
         EquipmentDAOImpl equipmentDao = new EquipmentDAOImpl();
-        Equipment result = equipmentDao.addEquipment(equipment);
+        Equipment result = equipmentDao.add(equipment);
         assertNotNull(result.getId());
     }
 

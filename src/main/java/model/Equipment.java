@@ -1,16 +1,12 @@
 package model;
 
 import dao_impl.DataClass;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -22,7 +18,7 @@ public class Equipment implements Serializable, DataClass {
     @Column(unique = true, nullable = false)
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer id;
+    private Long id;
     
     
     @Column(unique = true)
@@ -41,12 +37,12 @@ public class Equipment implements Serializable, DataClass {
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,20 +1,11 @@
 package model;
 
 import dao_impl.DataClass;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * FighterAircraft data class.
@@ -28,7 +19,7 @@ public class Rezervation implements Serializable, DataClass {
     @Column(unique = true, nullable = false)
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer id;
+    private Long id;
 
     @Column(name = "created", nullable = false)
     @Temporal(TemporalType.DATE)//dunno why I cant timestamp :(
@@ -66,12 +57,12 @@ public class Rezervation implements Serializable, DataClass {
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
