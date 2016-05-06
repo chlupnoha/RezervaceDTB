@@ -6,9 +6,10 @@ package dao_impl;
 
 import dao.UserDAO;
 import model.User;
+import org.hibernate.Session;
+
 import java.util.List;
 import java.util.logging.Logger;
-import org.hibernate.Session;
 
 /**
  *

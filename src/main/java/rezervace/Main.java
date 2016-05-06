@@ -8,22 +8,18 @@ package rezervace;
 import dao.UserDAO;
 import dao_impl.UserDAOImpl;
 import model.User;
+import model.UserRole;
+
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.UserRole;
 
 /**
  *
@@ -48,15 +44,16 @@ public class Main {
     public static void main(String[] args) {
         loggerSetup();
         deleteOldLogs();
-          
+
         createIlustrationData();
-        
+
+
         //tady pak View
-        
+
     }
-    
+
     private static void createIlustrationData() {
-        
+
         // MARINES ***********************************************************
 //        Marine m1 = new Marine("Alice", "Johnson", new GregorianCalendar(2000, 8, 24), "Fort Noxis", Status.DEAD);
 //        Marine m2 = new Marine("Frenky", "Strasak", new GregorianCalendar(2000, 4, 4), "Fort Noxis", Status.MISSING);
@@ -75,13 +72,13 @@ public class Main {
 //        marineDAO.addMarine(m6);
 //        marineDAO.addMarine(m7);
 //        marineDAO.addMarine(m8);
-        
+
         User u1 = new User("email@email.cz", "password", "dfkjlas", UserRole.ADMIN);
         UserDAO uDAO = new UserDAOImpl();
         uDAO.addUser(u1);
-        
+
     }
-    
+
     private static void loggerSetup() throws SecurityException {
         File logDir = new File(LOG_DIR);
         logDir.mkdirs();
