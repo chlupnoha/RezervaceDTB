@@ -4,18 +4,15 @@
  */
 package dao_impl;
 
-import dao.UserDAO;
 import model.User;
 import org.hibernate.Session;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
- *
  * @author chlupnoha
  */
-public class UserDAOImpl extends CommonDAOImpl<User> implements UserDAO {
+public class UserDAOImpl extends CommonDAOImpl<User> {
 
     private static final Logger LOG = Logger.getLogger(UserDAOImpl.class.getName());
 
@@ -26,31 +23,5 @@ public class UserDAOImpl extends CommonDAOImpl<User> implements UserDAO {
     public UserDAOImpl(Session session) {
         super(User.class, session);
     }
-    
-    @Override
-    public User getUserByID(Integer userId) {
-        return super.getEntityById(userId);
-    }
 
-    @Override
-    public User addUser(User user) {
-        return super.addEntity(user);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return super.updateEntity(user);
-    }
-
-    @Override
-    public boolean deleteUser(int userId) {
-        return super.deleteEntity(userId);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return super.getAllEntities();
-    }
-
-    
 }

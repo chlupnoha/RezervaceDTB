@@ -4,17 +4,15 @@
  */
 package dao_impl;
 
-import dao.EquipmentDAO;
-import java.util.List;
-import java.util.logging.Logger;
 import model.Equipment;
 import org.hibernate.Session;
 
+import java.util.logging.Logger;
+
 /**
- *
  * @author chlupnoha
  */
-public class EquipmentDAOImpl extends CommonDAOImpl<Equipment> implements EquipmentDAO {
+public class EquipmentDAOImpl extends CommonDAOImpl<Equipment> {
 
     private static final Logger LOG = Logger.getLogger(EquipmentDAOImpl.class.getName());
 
@@ -26,31 +24,5 @@ public class EquipmentDAOImpl extends CommonDAOImpl<Equipment> implements Equipm
         super(Equipment.class, session);
     }
 
-    @Override
-    public Equipment getEquipmentByID(Integer equipmentId) {
-        return super.getEntityById(equipmentId);
-    }
 
-    @Override
-    public Equipment addEquipment(Equipment equipment) {
-        return super.addEntity(equipment);
-    }
-
-    @Override
-    public Equipment updateEquipment(Equipment equipment) {
-        return super.updateEntity(equipment);
-    }
-
-    @Override
-    public boolean deleteEquipment(int equipmentId) {
-        return super.deleteEntity(equipmentId);
-    }
-
-    @Override
-    public List<Equipment> getAllEquipments() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-
-    
 }

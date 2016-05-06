@@ -4,17 +4,15 @@
  */
 package dao_impl;
 
-import dao.RoomDAO;
-import java.util.List;
-import java.util.logging.Logger;
 import model.Room;
 import org.hibernate.Session;
 
+import java.util.logging.Logger;
+
 /**
- *
  * @author chlupnoha
  */
-public class RoomDAOImpl extends CommonDAOImpl<Room> implements RoomDAO {
+public class RoomDAOImpl extends CommonDAOImpl<Room> {
 
     private static final Logger LOG = Logger.getLogger(RoomDAOImpl.class.getName());
 
@@ -26,30 +24,4 @@ public class RoomDAOImpl extends CommonDAOImpl<Room> implements RoomDAO {
         super(Room.class, session);
     }
 
-    @Override
-    public Room getRoomByID(Integer roomId) {
-        return super.getEntityById(roomId);
-    }
-
-    @Override
-    public Room addRoom(Room room) {
-        return super.addEntity(room);
-    }
-
-    @Override
-    public Room updateRoom(Room room) {
-        return super.updateEntity(room);
-    }
-
-    @Override
-    public boolean deleteRoom(int roomId) {
-        return super.deleteEntity(roomId);
-    }
-
-    @Override
-    public List<Room> getAllRooms() {
-        return super.getAllEntities();
-    }
-
-    
 }

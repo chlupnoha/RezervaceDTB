@@ -16,19 +16,11 @@
  */
 package dao_impl;
 
-import dao.RoomDAO;
-import dao.UserDAO;
 import java.util.Arrays;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
-import java.util.List;
+
 import model.Building;
-import model.Confirmed;
 import model.Image;
-import model.Rezervation;
-import model.Room;
-import model.User;
-import model.UserRole;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

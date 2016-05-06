@@ -16,17 +16,11 @@
  */
 package dao_impl;
 
-import dao.RoomDAO;
-import dao.UserDAO;
-import java.util.Date;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
+
 import model.Building;
 import model.Confirmed;
-import model.Image;
 import model.Rezervation;
 import model.Room;
 import model.User;

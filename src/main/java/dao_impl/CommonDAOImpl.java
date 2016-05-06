@@ -1,22 +1,23 @@
-
 package dao_impl;
 
-import rezervace.HibernateUtil;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.persistence.Entity;
+import dao.GenericDAOInterface;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import rezervace.HibernateUtil;
+
+import javax.persistence.Entity;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Class with common methods of DAOs
  *
  * @param <T>
  */
-public class CommonDAOImpl<T extends DataClass> {
+public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T> {
 
     private static final Logger LOG = Logger.getLogger(CommonDAOImpl.class.getName());
 
@@ -43,13 +44,46 @@ public class CommonDAOImpl<T extends DataClass> {
         return session;
     }
 
+
+    /**
+     * Adds entity to the database. Entity id can be set to specific value, or
+     * null to generate new id, generated id is set to the object.
+     *
+     * @param entity
+     * @return enity if entity was successfully added
+     */
+    @Override
+    public T add(T entity) {
+        if (entity == null) {
+            return null;
+        }
+        Transaction tx = null;
+        try {
+            tx = getSession().beginTransaction();
+            getSession().save(entity);
+            tx.commit();
+
+            LOG.log(Level.INFO, "Added {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
+
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            LOG.log(Level.SEVERE, null, e);
+        } finally {
+            getSession().close();
+        }
+        return entity;
+    }
+
     /**
      * Retrives entity with specified id.
      *
      * @param id Desired id
      * @return desired entity or null if entity with specified id does not exist
      */
-    protected T getEntityById(Integer id) {
+    @Override
+    public T getById(Long id) {
         if (id == null) {
             return null;
         }
@@ -64,31 +98,31 @@ public class CommonDAOImpl<T extends DataClass> {
     }
 
     /**
-     * Adds entity to the database. Entity id can be set to specific value, or
-     * null to generate new id, generated id is set to the object.
+     * Retrieves first entity with specified value in specified column.
      *
-     * @param entity
-     * @return enity if entity was successfully added
+     * @param clazz
+     * @param columnName
+     * @param value
+     * @return entity
      */
-    protected T addEntity(T entity) {
-        if (entity == null) {
-            return null;
-        }
+    @Override
+    public T getFirstByColumn(Class<T> clazz, String value, String columnName) {
+
         Transaction tx = null;
+        T entity = null;
         try {
             tx = getSession().beginTransaction();
-            getSession().save(entity);
+            Query q = getSession().createQuery("FROM " + entityName + " WHERE " + columnName + " = :value");
+            q.setParameter("value", value);
+            List list = q.list();
+            entity = (T) (list.isEmpty() ? null : list.get(0));
             tx.commit();
-            
-            LOG.log(Level.INFO, "Added {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
-            
+            LOG.log(Level.INFO, "Got first {1} by {0}: (#{2}) {3}", new Object[]{columnName, entityName, entity == null ? "" : entity.getId(), entity});
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
             }
             LOG.log(Level.SEVERE, null, e);
-        } finally {
-            getSession().close();
         }
         return entity;
     }
@@ -98,7 +132,8 @@ public class CommonDAOImpl<T extends DataClass> {
      *
      * @return list of entities
      */
-    protected List<T> getAllEntities() {
+    @Override
+    public List<T> getAll() {
         List entities = null;
         Transaction tx = null;
         try {
@@ -121,16 +156,17 @@ public class CommonDAOImpl<T extends DataClass> {
      * @param entity Entity to update, with id different form null
      * @return entity if entity was successfully updated
      */
-    protected T updateEntity(T entity) {
+    @Override
+    public T update(T entity) {
         if (entity == null || entity.getId() == null) {
             return null;
         }
         Transaction tx = null;
         try {
             tx = getSession().beginTransaction();
-            getSession().merge(entity);            
+            getSession().merge(entity);
             tx.commit();
-            
+
             LOG.log(Level.INFO, "Updated {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
         } catch (HibernateException e) {
             if (tx != null) {
@@ -147,7 +183,8 @@ public class CommonDAOImpl<T extends DataClass> {
      * @param id Id of entity to delete, can't be null
      * @return true if entity was successfully deleted
      */
-    protected boolean deleteEntity(Integer id) {
+    @Override
+    public boolean delete(Long id) {
         if (id == null) {
             return false;
         }
@@ -168,32 +205,6 @@ public class CommonDAOImpl<T extends DataClass> {
         return false;
     }
 
-    /**
-     * Retrieves first entity with specified value in specified column.
-     *
-     * @param columnName
-     * @param value
-     * @return entity
-     */
-    protected T getFirstEntityByColumn(String columnName, Object value) {
-        Transaction tx = null;
-        T entity = null;
-        try {
-            tx = getSession().beginTransaction();
-            Query q = getSession().createQuery("FROM " + entityName + " WHERE " + columnName + " = :value");
-            q.setParameter("value", value);
-            List list = q.list();
-            entity = (T) (list.isEmpty() ? null : list.get(0));
-            tx.commit();
-            LOG.log(Level.INFO, "Got first {1} by {0}: (#{2}) {3}", new Object[]{columnName, entityName, entity == null ? "" : entity.getId(), entity});
-        } catch (HibernateException e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            LOG.log(Level.SEVERE, null, e);
-        }
-        return entity;
-    }
 
     /**
      * Retrieves all entities with specified value in specified column.
@@ -202,12 +213,13 @@ public class CommonDAOImpl<T extends DataClass> {
      * @param value
      * @return list of entities
      */
-    protected List<T> getAllEntityByColumn(String columnName, Object value) {
+    @Override
+    public List<T> getAllByColumn(Class<T> clazz, String columnName, String value) {
         Transaction tx = null;
         List entities = null;
         try {
             tx = getSession().beginTransaction();
-            Query q = getSession().createQuery("FROM User WHERE " + columnName + " = :value");
+            Query q = getSession().createQuery(String.format("FROM User WHERE %s = :value", columnName));
             q.setParameter("value", value);
             entities = q.list();
             tx.commit();
@@ -221,3 +233,4 @@ public class CommonDAOImpl<T extends DataClass> {
         return (List<T>) (Object) entities;
     }
 }
+

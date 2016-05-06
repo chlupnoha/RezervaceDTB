@@ -4,18 +4,15 @@
  */
 package dao_impl;
 
-import dao.RezervationDAO;
-import java.util.GregorianCalendar;
-import java.util.List;
-import java.util.logging.Logger;
 import model.Rezervation;
 import org.hibernate.Session;
 
+import java.util.logging.Logger;
+
 /**
- *
  * @author chlupnoha
  */
-public class RezervationDAOImp extends CommonDAOImpl<Rezervation> implements RezervationDAO {
+public class RezervationDAOImp extends CommonDAOImpl<Rezervation> {
 
     private static final Logger LOG = Logger.getLogger(RezervationDAOImp.class.getName());
 
@@ -27,31 +24,4 @@ public class RezervationDAOImp extends CommonDAOImpl<Rezervation> implements Rez
         super(Rezervation.class, session);
     }
 
-    @Override
-    public Rezervation getRezervationByID(Integer rezervationId) {
-        return super.getEntityById(rezervationId);
-    }
-
-    @Override
-    public Rezervation addRezervation(Rezervation rezervation) {
-        rezervation.setCreated(new GregorianCalendar());
-        return super.addEntity(rezervation);
-    }
-
-    @Override
-    public Rezervation updateRezervation(Rezervation rezervation) {
-        return super.updateEntity(rezervation);
-    }
-
-    @Override
-    public boolean deleteRezervation(int rezervationId) {
-        return super.deleteEntity(rezervationId);
-    }
-
-    @Override
-    public List<Rezervation> getAllRezervations() {
-        return super.getAllEntities();
-    }
-
-    
 }

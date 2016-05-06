@@ -4,19 +4,15 @@
  */
 package dao_impl;
 
-import dao.EquipmentDAO;
-import dao.ImageDAO;
-import java.util.List;
-import java.util.logging.Logger;
-import model.Equipment;
 import model.Image;
 import org.hibernate.Session;
 
+import java.util.logging.Logger;
+
 /**
- *
  * @author chlupnoha
  */
-public class ImageDAOImpl extends CommonDAOImpl<Image> implements ImageDAO {
+public class ImageDAOImpl extends CommonDAOImpl<Image> {
 
     private static final Logger LOG = Logger.getLogger(ImageDAOImpl.class.getName());
 
@@ -28,31 +24,5 @@ public class ImageDAOImpl extends CommonDAOImpl<Image> implements ImageDAO {
         super(Image.class, session);
     }
 
-    @Override
-    public Image getImageByID(Integer imageId) {
-        return super.getEntityById(imageId);
-    }
 
-    @Override
-    public Image addImage(Image image) {
-        return super.addEntity(image);
-    }
-
-    @Override
-    public Image updateImage(Image image) {
-        return super.updateEntity(image);
-    }
-
-    @Override
-    public boolean deleteImage(int imageId) {
-        return super.deleteEntity(imageId);
-    }
-
-    @Override
-    public List<Image> getAllImages() {
-        return super.getAllEntities();
-    }
-    
-    
-    
 }

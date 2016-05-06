@@ -16,12 +16,9 @@
  */
 package dao_impl;
 
-import dao.RoomDAO;
-import dao.TagDAO;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
 import model.Building;
 import model.Equipment;
 import model.Image;
