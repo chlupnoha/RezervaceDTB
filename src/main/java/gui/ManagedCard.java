@@ -22,7 +22,9 @@ public abstract class ManagedCard extends JPanel {
     public ManagedCard() {
     }
 
-    private void getManaged() {
-        //CardManager.getIntance().addCard(this);
+    private void setupBasics() {
+        setPreferredSize(new Dimension(800, 500));
+        setVisible(true);
     }
+
 }

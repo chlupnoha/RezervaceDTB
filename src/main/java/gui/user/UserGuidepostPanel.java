@@ -11,9 +11,7 @@ public class UserGuidepostPanel extends ManagedCard {
 
     public UserGuidepostPanel() {
         super();
-        setPreferredSize(new Dimension(800, 500));
 
-        setVisible(true);
 
     }
 

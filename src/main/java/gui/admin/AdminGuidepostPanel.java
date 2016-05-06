@@ -8,5 +8,4 @@ import gui.ManagedCard;
 public class AdminGuidepostPanel extends ManagedCard {
 
 
-
 }

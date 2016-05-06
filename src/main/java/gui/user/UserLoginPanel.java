@@ -78,8 +78,6 @@ public class UserLoginPanel extends ManagedCard {
         panRight.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panLeft.add(registrationButton, BorderLayout.PAGE_END);
         panRight.add(adminButton, BorderLayout.PAGE_END);
-
-        setVisible(true);
     }
 }
 

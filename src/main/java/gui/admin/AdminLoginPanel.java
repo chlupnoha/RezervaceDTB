@@ -80,7 +80,6 @@ public class AdminLoginPanel extends ManagedCard {
         panLeft.add(registrationButton, BorderLayout.PAGE_END);
         panRight.add(adminButton, BorderLayout.PAGE_END);
 
-        setVisible(true);
     }
 
 
