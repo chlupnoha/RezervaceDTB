@@ -3,6 +3,7 @@ package gui.user;
 import gui.ManagedCard;
 import gui.admin.AdminLoginPanel;
 import gui.customcomponents.CardChoosingButton;
+import gui.permission.UserLoginConstraint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class UserLoginPanel extends ManagedCard {
     private JTextField userNameTextField = new JTextField(10);
     private JLabel passwordLabel = new JLabel("Passowrd");
     private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class);
+    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(userNameTextField, passwordTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
