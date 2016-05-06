@@ -3,6 +3,7 @@ package gui.user;
 import gui.ManagedCard;
 import gui.admin.AdminLoginPanel;
 import gui.customcomponents.CardChoosingButton;
+import gui.customcomponents.ErrorLabel;
 import gui.permission.UserLoginConstraint;
 
 import javax.swing.*;
@@ -12,22 +13,26 @@ import java.awt.*;
  * Created by marek on 4.5.16.
  */
 public class UserLoginPanel extends ManagedCard {
-
+    private ErrorLabel errorLabel = new ErrorLabel();
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
     private JLabel userNameLabel = new JLabel("Username");
     private JTextField userNameTextField = new JTextField(10);
     private JLabel passwordLabel = new JLabel("Passowrd");
     private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(userNameTextField, passwordTextField));
+    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(errorLabel, userNameTextField, passwordTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
-    public UserLoginPanel() {
-        super(new BorderLayout());
-
+    {
         setupComponents();
     }
 
+
+    public UserLoginPanel() {
+        super(new BorderLayout());
+    }
+
+    @Override
     public void setupComponents() {
         JPanel panLeft = new JPanel(new BorderLayout());
         JPanel panRight = new JPanel(new BorderLayout());
@@ -71,8 +76,13 @@ public class UserLoginPanel extends ManagedCard {
         panMainBottom.add(passwordLabel, BorderLayout.NORTH);
         panMainBottom.add(passwordTextField, BorderLayout.CENTER);
 
-        panCenterBottom.setBorder(BorderFactory.createEmptyBorder(2, 15, 15, 15));
-        panCenterBottom.add(proceedButton, BorderLayout.NORTH);
+        JPanel panCenterBottomTop = new JPanel(new BorderLayout());
+        panCenterBottom.add(panCenterBottomTop, BorderLayout.NORTH);
+
+        panCenterBottomTop.setBorder(BorderFactory.createEmptyBorder(2, 15, 15, 15));
+        panCenterBottomTop.add(proceedButton, BorderLayout.NORTH);
+        panCenterBottomTop.add(errorLabel, BorderLayout.CENTER);
+
 
         panLeft.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panRight.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));

@@ -14,6 +14,10 @@ import java.awt.*;
  */
 public class AdminLoginPanel extends ManagedCard {
 
+    {
+        setupComponents();
+    }
+
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
     private JLabel userNameLabel = new JLabel("Username");
     private JTextField userNameTextField = new JTextField(10);
@@ -25,10 +29,9 @@ public class AdminLoginPanel extends ManagedCard {
 
     public AdminLoginPanel() {
         super(new BorderLayout());
-
-        setupComponents();
     }
 
+    @Override
     public void setupComponents() {
         JPanel panLeft = new JPanel(new BorderLayout());
         JPanel panRight = new JPanel(new BorderLayout());

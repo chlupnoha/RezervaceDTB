@@ -35,7 +35,7 @@ public class CardChoosingButton extends JButton {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (constraint != null && constraint.isOk() || constraint == null) {
+            if ((constraint != null && constraint.isOk()) || constraint == null) {
                 CardManager.getIntance().switchCard(c);
             }
         }

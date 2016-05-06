@@ -1,15 +1,15 @@
 package gui.permission;
 
-import javax.swing.*;
+import gui.customcomponents.ErrorLabel;
 
 /**
  * Created by marek on 6.5.16.
  */
 public abstract class PermissionConstraint {
 
-    protected JLabel errorLabel;
+    protected ErrorLabel errorLabel;
 
-    public PermissionConstraint(JLabel errorLabel) {
+    public PermissionConstraint(ErrorLabel errorLabel) {
         this.errorLabel = errorLabel;
     }
 
@@ -18,11 +18,11 @@ public abstract class PermissionConstraint {
 
     public abstract boolean isOk();
 
-    public JLabel getErrorLabel() {
+    public ErrorLabel getErrorLabel() {
         return errorLabel;
     }
 
-    public void setErrorLabel(JLabel errorLabel) {
+    public void setErrorLabel(ErrorLabel errorLabel) {
         this.errorLabel = errorLabel;
     }
 }

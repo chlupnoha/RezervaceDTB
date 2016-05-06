@@ -7,5 +7,12 @@ import gui.ManagedCard;
  */
 public class AdminGuidepostPanel extends ManagedCard {
 
+    {
+        setupComponents();
+    }
 
+    @Override
+    public void setupComponents() {
+
+    }
 }

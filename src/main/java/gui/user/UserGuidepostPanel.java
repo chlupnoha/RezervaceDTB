@@ -10,21 +10,22 @@ import java.awt.*;
  * Created by marek on 4.5.16.
  */
 public class UserGuidepostPanel extends ManagedCard {
-
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
     private JButton browseRoomsButton = new JButton("Browse rooms");
     private JButton browseReservationsButton = new JButton("Browse reservations");
     private JButton changePasswordButton = new JButton("Change passowrd");
-
     private CardChoosingButton adminButton = new CardChoosingButton("Logout", UserLoginPanel.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
 
-    public UserGuidepostPanel() {
-        super(new BorderLayout());
-
+    {
         setupComponents();
     }
 
+    public UserGuidepostPanel() {
+        super(new BorderLayout());
+    }
+
+    @Override
     public void setupComponents() {
         JPanel panLeft = new JPanel(new BorderLayout());
         JPanel panRight = new JPanel(new BorderLayout());
