@@ -1,6 +1,5 @@
-package dao_impl;
+package dao;
 
-import dao.GenericDAOInterface;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;

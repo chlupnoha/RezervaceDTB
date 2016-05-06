@@ -1,6 +1,6 @@
 package model;
 
-import dao_impl.DataClass;
+import dao.DataClass;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

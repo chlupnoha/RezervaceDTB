@@ -2,7 +2,7 @@
  * Copyright (C) 2015 Ondřej Skoumal <skoumal.ondra@gmail.com>
  *
  */
-package dao_impl;
+package dao;
 
 import model.Room;
 import org.hibernate.Session;

@@ -1,6 +1,6 @@
 package gui.permission;
 
-import dao_impl.UserDAOImpl;
+import dao.UserDAOImpl;
 import gui.BookingSystemFrame;
 import gui.customcomponents.ErrorLabel;
 

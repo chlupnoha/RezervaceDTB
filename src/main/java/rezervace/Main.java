@@ -5,7 +5,7 @@
 package rezervace;
 
 
-import dao_impl.UserDAOImpl;
+import dao.UserDAOImpl;
 import model.User;
 import model.UserRole;
 

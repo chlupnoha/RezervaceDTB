@@ -1,6 +1,6 @@
 package model;
 
-import dao_impl.DataClass;
+import dao.DataClass;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
