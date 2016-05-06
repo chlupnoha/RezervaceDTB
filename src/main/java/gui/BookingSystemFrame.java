@@ -10,8 +10,8 @@ import java.awt.*;
  */
 public class BookingSystemFrame implements Runnable {
 
-    private JFrame frame;
     private static BookingSystemFrame instance;
+    private JFrame frame;
 
     private BookingSystemFrame() {
     }
@@ -42,10 +42,6 @@ public class BookingSystemFrame implements Runnable {
             *
             *
             * */
-    public static void main(String[] args) {
-        new BookingSystemFrame().run();
-    }
-
     @Override
     public void run() {
         frame = new JFrame("Booking System");

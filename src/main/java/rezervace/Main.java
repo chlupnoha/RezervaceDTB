@@ -6,6 +6,7 @@ package rezervace;
 
 
 import dao.UserDAOImpl;
+import gui.BookingSystemFrame;
 import model.User;
 import model.UserRole;
 
@@ -46,6 +47,8 @@ public class Main {
 
         createIlustrationData();
 
+
+        BookingSystemFrame.getInstance().run();
 
         //tady pak View
 
