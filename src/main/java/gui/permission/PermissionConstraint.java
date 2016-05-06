@@ -5,10 +5,24 @@ import javax.swing.*;
 /**
  * Created by marek on 6.5.16.
  */
-public interface PermissionConstraint {
+public abstract class PermissionConstraint {
 
+    protected JLabel errorLabel;
 
-    boolean isOk();
+    public PermissionConstraint(JLabel errorLabel) {
+        this.errorLabel = errorLabel;
+    }
 
-    void setErrorLabel(JLabel errorLabel);
+    public PermissionConstraint() {
+    }
+
+    public abstract boolean isOk();
+
+    public JLabel getErrorLabel() {
+        return errorLabel;
+    }
+
+    public void setErrorLabel(JLabel errorLabel) {
+        this.errorLabel = errorLabel;
+    }
 }

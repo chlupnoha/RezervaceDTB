@@ -2,6 +2,7 @@ package gui.admin;
 
 import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
+import gui.permission.AdminLoginConstraint;
 import gui.user.RegistrationPanel;
 import gui.user.UserLoginPanel;
 
@@ -18,7 +19,7 @@ public class AdminLoginPanel extends ManagedCard {
     private JTextField userNameTextField = new JTextField(10);
     private JLabel passwordLabel = new JLabel("Passowrd");
     private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in as admin!", AdminGuidepostPanel.class);
+    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in as admin!", AdminGuidepostPanel.class, new AdminLoginConstraint(userNameTextField, passwordTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("User", UserLoginPanel.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
@@ -79,7 +80,6 @@ public class AdminLoginPanel extends ManagedCard {
         panRight.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         panLeft.add(registrationButton, BorderLayout.PAGE_END);
         panRight.add(adminButton, BorderLayout.PAGE_END);
-
     }
 
 
