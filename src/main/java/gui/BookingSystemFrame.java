@@ -10,28 +10,45 @@ import java.awt.*;
  */
 public class BookingSystemFrame implements Runnable {
 
+    private JFrame frame;
+    private static BookingSystemFrame instance;
+
+    private BookingSystemFrame() {
+    }
+
+    public static BookingSystemFrame getInstance() {
+        if (instance == null) {
+            instance = new BookingSystemFrame();
+        }
+        return instance;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
     /*
-        * login - admin
-        *   add room
-        *   browse rooms
-        *   browse reservations
-        *   change password
-        *
-        *
-        * login - user
-        *   browse rooms
-        *   browse reservations
-        *   change password
-        *
-        *
-        * */
+            * login - admin
+            *   add room
+            *   browse rooms
+            *   browse reservations
+            *   change password
+            *
+            *
+            * login - user
+            *   browse rooms
+            *   browse reservations
+            *   change password
+            *
+            *
+            * */
     public static void main(String[] args) {
         new BookingSystemFrame().run();
     }
 
     @Override
     public void run() {
-        JFrame frame = new JFrame("Booking System");
+        frame = new JFrame("Booking System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 

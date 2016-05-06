@@ -4,7 +4,7 @@ import gui.ManagedCard;
 import gui.admin.AdminLoginPanel;
 import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.ErrorLabel;
-import gui.permission.UserLoginConstraint;
+import gui.permission.RegistrationConstraint;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,9 +20,11 @@ public class RegistrationPanel extends ManagedCard {
     private JTextField userNameTextField = new JTextField(10);
     private JLabel passwordLabel = new JLabel("Passowrd");
     private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(errorLabel, userNameTextField, passwordTextField));
+    private JLabel passwordAgainLabel = new JLabel("Passowrd again:");
+    private JPasswordField passwordAgainTextField = new JPasswordField(10);
+    private CardChoosingButton proceedButton = new CardChoosingButton("Register!", UserLoginPanel.class, new RegistrationConstraint(userNameTextField, passwordTextField, passwordAgainTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
+    private CardChoosingButton registrationButton = new CardChoosingButton("Login", RegistrationPanel.class);
 
     {
         setupComponents();
@@ -54,6 +56,9 @@ public class RegistrationPanel extends ManagedCard {
         JPanel panMainTop = new JPanel(new BorderLayout());
         JPanel panMainBottom = new JPanel(new BorderLayout());
 
+        JPanel panCenterTopBottom = new JPanel(new BorderLayout());
+
+        panCenterTopBottom.setPreferredSize(new Dimension(0, 50));
         panMainTop.setPreferredSize(new Dimension(0, 50));
         panMainBottom.setPreferredSize(new Dimension(0, 50));
 
@@ -62,8 +67,7 @@ public class RegistrationPanel extends ManagedCard {
         add(panCenter, BorderLayout.CENTER);
 
         panCenter.add(panCenterTop, BorderLayout.PAGE_START);
-        panCenterTop.setBorder(BorderFactory.createEmptyBorder(2, 70, 15, 15));
-        panCenterTop.add(introductoryLabel, BorderLayout.PAGE_END);
+        panCenterTop.add(panCenterTopBottom, BorderLayout.PAGE_END);
 
 
         panCenter.add(panCenterCenter, BorderLayout.CENTER);
@@ -72,10 +76,14 @@ public class RegistrationPanel extends ManagedCard {
         panCenterCenter.add(panMainTop, BorderLayout.NORTH);
         panCenterCenter.add(panMainBottom, BorderLayout.CENTER);
 
-        panMainTop.add(userNameLabel, BorderLayout.NORTH);
-        panMainTop.add(userNameTextField, BorderLayout.CENTER);
-        panMainBottom.add(passwordLabel, BorderLayout.NORTH);
-        panMainBottom.add(passwordTextField, BorderLayout.CENTER);
+        panCenterTopBottom.add(userNameLabel, BorderLayout.NORTH);
+        panCenterTopBottom.add(userNameTextField, BorderLayout.CENTER);
+
+
+        panMainTop.add(passwordLabel, BorderLayout.NORTH);
+        panMainTop.add(passwordTextField, BorderLayout.CENTER);
+        panMainBottom.add(passwordAgainLabel, BorderLayout.NORTH);
+        panMainBottom.add(passwordAgainTextField, BorderLayout.CENTER);
 
         JPanel panCenterBottomTop = new JPanel(new BorderLayout());
         panCenterBottom.add(panCenterBottomTop, BorderLayout.NORTH);
