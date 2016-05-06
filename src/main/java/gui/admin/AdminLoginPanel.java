@@ -14,10 +14,6 @@ import java.awt.*;
  */
 public class AdminLoginPanel extends ManagedCard {
 
-    {
-        setupComponents();
-    }
-
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
     private JLabel userNameLabel = new JLabel("Username");
     private JTextField userNameTextField = new JTextField(10);
@@ -26,6 +22,10 @@ public class AdminLoginPanel extends ManagedCard {
     private CardChoosingButton proceedButton = new CardChoosingButton("Sign in as admin!", AdminGuidepostPanel.class, new AdminLoginConstraint(userNameTextField, passwordTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("User", UserLoginPanel.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
+
+    {
+        setupComponents();
+    }
 
     public AdminLoginPanel() {
         super(new BorderLayout());

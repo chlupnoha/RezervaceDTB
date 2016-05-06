@@ -27,6 +27,6 @@ public class UserLoginConstraint extends PermissionConstraint {
     @Override
     public boolean isOk() {
         //errorLabel.setText("NO SHIT MAN");
-        return false;
+        return true;
     }
 }
