@@ -6,11 +6,10 @@ package dao_impl;
 
 /**
  * Data class stored in database with integer ID
- *
  */
 public interface DataClass {
 
-    Integer getId();
+    Long getId();
 
-    void setId(Integer id);
+    void setId(Long id);
 }

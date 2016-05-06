@@ -16,39 +16,36 @@
  */
 package dao_impl;
 
+import model.Building;
+import model.Image;
+import org.junit.*;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
-import model.Building;
-import model.Image;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
- *
  * @author chlupnoha
  */
 public class BuildingDAOImplTest {
-    
+
     public BuildingDAOImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -76,11 +73,11 @@ public class BuildingDAOImplTest {
         System.out.println("addBuilding");
         Building building = new Building("testBuilding", "999666333", "test@test.test", "adressTest");
         BuildingDAOImpl buldingDaon = new BuildingDAOImpl();
-        Building result = buldingDaon.addBuilding(building);
+        Building result = buldingDaon.add(building);
         assertNotNull(result.getId());
     }
-    
-    
+
+
     /**
      * Test of addRezervation method, of class RezervationDAOImp.
      */
@@ -90,7 +87,7 @@ public class BuildingDAOImplTest {
         Building building = new Building("testBuilding2", "999666333", "test2@test.test", "adressTest2");
         building.setImages(new HashSet(Arrays.asList(new Image[]{new Image("testImage")})));
         BuildingDAOImpl buldingDao = new BuildingDAOImpl();
-        Building result = buldingDao.addBuilding(building);
+        Building result = buldingDao.add(building);
         assertNotNull(result.getId());
         assertEquals(result.getImages().size(), 1);
     }
@@ -138,5 +135,5 @@ public class BuildingDAOImplTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-    
+
 }

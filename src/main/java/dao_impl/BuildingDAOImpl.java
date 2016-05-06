@@ -16,12 +16,12 @@ public class BuildingDAOImpl extends CommonDAOImpl<Building> {
 
     private static final Logger LOG = Logger.getLogger(BuildingDAOImpl.class.getName());
 
-    protected BuildingDAOImpl(Class<Building> clazz) {
-        super(clazz);
+    protected BuildingDAOImpl() {
+        super(Building.class);
     }
 
-    protected BuildingDAOImpl(Class<Building> clazz, Session session) {
-        super(clazz, session);
+    protected BuildingDAOImpl(Session session) {
+        super(Building.class, session);
     }
 }
 

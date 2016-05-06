@@ -16,37 +16,34 @@
  */
 package dao_impl;
 
-import java.util.List;
 import model.User;
 import model.UserRole;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
- *
  * @author chlupnoha
  */
 public class UserDAOImplTest {
-    
+
     public UserDAOImplTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -60,12 +57,12 @@ public class UserDAOImplTest {
         System.out.println("addUser");
         User user = new User("test_mail@test.cz", "test_password", "test_salt", UserRole.GUEST);
         UserDAOImpl instance = new UserDAOImpl();
-        
-        User result = instance.addUser(user);
+
+        User result = instance.add(user);
         System.out.println(result.toString());
         assertNotNull(result);
     }
-    
+
     /**
      * Test of getUserByID method, of class UserDAOImpl.
      */
@@ -74,34 +71,34 @@ public class UserDAOImplTest {
         System.out.println("get user by id");
         User user = new User("test_mail2@test.cz", "test_password", "test_salt", UserRole.GUEST);
         UserDAOImpl instance = new UserDAOImpl();
-        
-        User result = instance.addUser(user);
-        
-        if(result != null){
-            User findedUser = instance.getUserByID(user.getId());
+
+        User result = instance.add(user);
+
+        if (result != null) {
+            User findedUser = instance.getById(user.getId());
             assertEquals(result.getId(), findedUser.getId());
-        }else{
+        } else {
             fail("Problem with add user");
         }
     }
-    
+
     /**
      * Test of updateUser method, of class UserDAOImpl.
      */
     @Test
     public void testUpdateUser() {
         System.out.println("updateUser");
-        
+
         User user = new User("test_mail3@test.cz", "test_password", "test_salt", UserRole.GUEST);
         UserDAOImpl instance = new UserDAOImpl();
-        
-        User result = instance.addUser(user);
-        
-        if(result != null){
+
+        User result = instance.add(user);
+
+        if (result != null) {
             result.setEmail("test_updated_mail3@test.cz");
-            User result2 = instance.updateUser(result);
+            User result2 = instance.update(result);
             assertEquals(result2.getEmail(), "test_updated_mail3@test.cz");
-        }else{
+        } else {
             fail("Problem with add user");
         }
     }
@@ -112,17 +109,17 @@ public class UserDAOImplTest {
     @Test
     public void testDeleteUser() {
         System.out.println("deleteUser");
-        
+
         User user = new User("test_mail4@test.cz", "test_password", "test_salt", UserRole.GUEST);
         UserDAOImpl instance = new UserDAOImpl();
-        
-        User result = instance.addUser(user);
-        
-        if(result != null){
+
+        User result = instance.add(user);
+
+        if (result != null) {
             result.setEmail("test_updated_mail3@test.cz");
-            instance.deleteEntity(result.getId());
-            assertNull(instance.getUserByID(result.getId()));
-        }else{
+            instance.delete(result.getId());
+            assertNull(instance.getById(result.getId()));
+        } else {
             fail("Problem with add user");
         }
     }
@@ -133,14 +130,14 @@ public class UserDAOImplTest {
     @Test
     public void testGetAllUsers() {
         System.out.println("getAllUsers");
-        
+
         User user = new User("test_mail5@test.cz", "test_password", "test_salt", UserRole.GUEST);
         UserDAOImpl instance = new UserDAOImpl();
-        instance.addUser(user);
-        
-        List<User> result = instance.getAllUsers();
+        instance.add(user);
+
+        List<User> result = instance.getAll();
         assertTrue(result.size() > 0);
     }
-    
+
 
 }

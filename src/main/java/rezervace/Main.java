@@ -73,8 +73,8 @@ public class Main {
 //        marineDAO.addMarine(m8);
 
         User u1 = new User("email@email.cz", "password", "dfkjlas", UserRole.ADMIN);
-        UserDAO uDAO = new UserDAOImpl();
-        uDAO.addUser(u1);
+        UserDAOImpl ruDAO = new UserDAOImpl();
+        ruDAO.add(u1);
 
     }
 

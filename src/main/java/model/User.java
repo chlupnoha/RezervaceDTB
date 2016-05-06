@@ -22,7 +22,7 @@ public class User implements Serializable, DataClass {
     @Column(unique = true, nullable = false)
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Integer id;
+    private Long id;
     
     
     @NotNull
@@ -52,12 +52,12 @@ public class User implements Serializable, DataClass {
     }
 
     @Override
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Override
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
     

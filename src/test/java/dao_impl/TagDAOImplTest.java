@@ -59,7 +59,7 @@ public class TagDAOImplTest {
         System.out.println("addTag");
         Tag tag = new Tag("tagTest");
         TagDAOImpl instance = new TagDAOImpl();
-        Tag result = instance.addTag(tag);
+        Tag result = instance.add(tag);
         
         System.out.println(result);
         

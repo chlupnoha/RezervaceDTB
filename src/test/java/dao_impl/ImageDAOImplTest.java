@@ -16,14 +16,10 @@
  */
 package dao_impl;
 
-import java.util.List;
 import model.Image;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.*;
+
+import static org.junit.Assert.assertNotNull;
 
 /**
  *
@@ -74,7 +70,7 @@ public class ImageDAOImplTest {
         Image image = new Image("testImage");
         ImageDAOImpl instance = new ImageDAOImpl();
         
-        Image result = instance.addImage(image);
+        Image result = instance.add(image);
         assertNotNull(result.getId());
     }
 
