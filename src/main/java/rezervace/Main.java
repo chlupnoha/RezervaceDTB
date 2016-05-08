@@ -52,24 +52,6 @@ public class Main {
 
     private static void createIlustrationData() {
 
-        // MARINES ***********************************************************
-//        Marine m1 = new Marine("Alice", "Johnson", new GregorianCalendar(2000, 8, 24), "Fort Noxis", Status.DEAD);
-//        Marine m2 = new Marine("Frenky", "Strasak", new GregorianCalendar(2000, 4, 4), "Fort Noxis", Status.MISSING);
-//        Marine m3 = new Marine("Adolf", "Robinson", new GregorianCalendar(2004, 1, 17), "Fort Noxis", Status.ALIVE);
-//        Marine m4 = new Marine("Jim", "Johnson", new GregorianCalendar(2007, 5, 25), "Fort Noxis", Status.ALIVE);
-//        Marine m5 = new Marine("Arnold", "John", new GregorianCalendar(2010, 8, 29), "Fort Noxis", Status.ALIVE);
-//        Marine m6 = new Marine("Oxen", "Shwarzzenegger", new GregorianCalendar(1998, 1, 24), "Fort Noxis", Status.ALIVE);
-//        Marine m7 = new Marine("Brad", "Black", new GregorianCalendar(2003, 1, 27), "Fort Noxis", Status.ALIVE);
-//        Marine m8 = new Marine("Kim", "Vim", new GregorianCalendar(2001, 8, 14), "Fort Noxis", Status.ALIVE);
-//        MarineDAO marineDAO = new MarineDAOImpl();
-//        marineDAO.addMarine(m1);
-//        marineDAO.addMarine(m2);
-//        marineDAO.addMarine(m3);
-//        marineDAO.addMarine(m4);
-//        marineDAO.addMarine(m5);
-//        marineDAO.addMarine(m6);
-//        marineDAO.addMarine(m7);
-//        marineDAO.addMarine(m8);
 
         User u1 = new User("email@email.cz", "password", "dfkjlas", UserRole.ADMIN);
         UserDAOImpl ruDAO = new UserDAOImpl();
