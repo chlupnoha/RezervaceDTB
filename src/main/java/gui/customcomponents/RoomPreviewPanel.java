@@ -1,6 +1,8 @@
 package gui.customcomponents;
 
+import model.Equipment;
 import model.Room;
+import model.Tag;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,15 +36,34 @@ public class RoomPreviewPanel extends JPanel {
         setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         desriptionPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        JLabel roomName = new JLabel("Room #1");
+        JLabel roomName = new JLabel(String.valueOf("Room #" + room.getId()));
         desriptionPanel.add(roomName);
 
-        JLabel tagsLabel = new JLabel("");
-        desriptionPanel.add(tagsLabel);
-        ListEnumPanel tagsDataLabel = new ListEnumPanel("Tags:", "#nice_view #big #terrace");
+
+        StringBuilder st = new StringBuilder();
+        int i = room.getTags().size();
+        for (Tag tag : room.getTags()) {
+            st.append(tag.getName());
+            i--;
+            if (i != 0) {
+                st.append(", ");
+            }
+        }
+        ListEnumPanel tagsDataLabel = new ListEnumPanel("Tags:", st.toString());
+
         desriptionPanel.add(tagsDataLabel);
 
-        ListEnumPanel equipmentDataLabel = new ListEnumPanel("Equipment:", "TV, double bed, bath room, kitchen, kitchen, kitchen");
+        st = new StringBuilder();
+        i = room.getEquipment().size();
+        for (Equipment eq : room.getEquipment()) {
+            st.append(eq.getName());
+            i--;
+            if (i != 0) {
+                st.append(", ");
+            }
+        }
+
+        ListEnumPanel equipmentDataLabel = new ListEnumPanel("Equipment:", st.toString());
         desriptionPanel.add(equipmentDataLabel);
 
 

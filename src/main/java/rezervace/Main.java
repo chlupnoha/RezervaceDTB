@@ -64,11 +64,11 @@ public class Main {
         tags.add(tag);
         tagDAO.add(tag);
         Tag tag1 = new Tag();
-        tag.setName("big");
+        tag1.setName("big");
         tags.add(tag1);
         tagDAO.add(tag1);
         Tag tag2 = new Tag();
-        tag.setName("double_bed");
+        tag2.setName("double_bed");
         tags.add(tag2);
         tagDAO.add(tag2);
 

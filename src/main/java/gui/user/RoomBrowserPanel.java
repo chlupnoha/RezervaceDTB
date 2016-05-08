@@ -18,12 +18,19 @@ public class RoomBrowserPanel extends ManagedCard {
     private JButton menuButton = new JButton("Menu");
     private JButton logoutButton = new JButton("Make reservation");
 
+    private JPanel cards;
+    private CardLayout cardLayout;
+
     {
         setupComponents();
     }
 
     public RoomBrowserPanel() {
         super(new BorderLayout());
+        //this.cards = new JPanel(new CardLayout());
+        //cardLayout = (CardLayout) cards.getLayout();
+
+        //RoomDAOImpl roomDAO = new RoomDAOImpl();
     }
 
     @Override
