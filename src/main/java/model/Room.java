@@ -23,29 +23,14 @@ public class Room implements Serializable, DataClass {
     @ManyToOne(cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "building_id")
     private Building building;
-    
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "room_tag", joinColumns = {
-        @JoinColumn(name = "room_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                @JoinColumn(name = "tag_id",
-                        nullable = false, updatable = false)})
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Tag> tags = new HashSet<>(0);
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "room_equipment", joinColumns = {
-        @JoinColumn(name = "room_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                @JoinColumn(name = "equipment_id",
-                        nullable = false, updatable = false)})
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Equipment> equipment = new HashSet<>(0);
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "room_image", joinColumns = {
-        @JoinColumn(name = "room_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                @JoinColumn(name = "image_id",
-                        nullable = false, updatable = false)})
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Image> images = new HashSet<>(0);
 
     public Room() {
@@ -97,7 +82,7 @@ public class Room implements Serializable, DataClass {
     public void setImages(Set<Image> images) {
         this.images = images;
     }
-    
+
     @Override
     public String toString() {
         return "Room: {\"id\": " + id + ", \"building\" : {" + building.toString() + "}";

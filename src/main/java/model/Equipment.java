@@ -5,8 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -19,17 +17,17 @@ public class Equipment implements Serializable, DataClass {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    
-    
+
+
     @Column(unique = true)
     private String name;
-    
-    
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
-    private Set<Room> rooms = new HashSet<>();
-        
-    public Equipment(){
-        
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Room room;
+
+    public Equipment() {
+
     }
 
     public Equipment(String name) {
@@ -54,17 +52,17 @@ public class Equipment implements Serializable, DataClass {
         this.name = name;
     }
 
-    public Set<Room> getRooms() {
-        return rooms;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
+    public void setRoom(Room room) {
+        this.room = room;
     }
-    
+
     @Override
     public String toString() {
-        return "Equipment: { id: " +  id + ", name: " + name +  "}";
+        return "Equipment: { id: " + id + ", name: " + name + "}";
     }
-   
+
 }

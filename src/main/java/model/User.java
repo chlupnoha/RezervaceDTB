@@ -1,16 +1,14 @@
 package model;
 
 import dao.DataClass;
-import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.annotations.GenericGenerator;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -23,25 +21,28 @@ public class User implements Serializable, DataClass {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    
-    
+
+
     @NotNull
     @Column(unique = true)
     private String email;
-    
+
     @NotNull
     @Size(min = 6)
     private String password;
-    
+
     @NotNull
     @Size(min = 6)
-    private String salt; 
-    
+    private String salt;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    public User(){
-        
+    @OneToMany
+    private Set<Reservation> reservations = new HashSet<>();
+
+    public User() {
+
     }
 
     public User(String email, String password, String salt, UserRole role) {
@@ -60,7 +61,7 @@ public class User implements Serializable, DataClass {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -92,10 +93,18 @@ public class User implements Serializable, DataClass {
     public void setSalt(String salt) {
         this.salt = salt;
     }
-    
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
     @Override
     public String toString() {
-        return "id: " +  id + ", email: " + email + ", passwordHash: " + password + ", salt: " + salt;
+        return "id: " + id + ", email: " + email + ", passwordHash: " + password + ", salt: " + salt;
     }
-   
+
 }

@@ -5,8 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
@@ -25,8 +23,8 @@ public class Tag implements Serializable, DataClass {
     private String name;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
-    private Set<Room> rooms = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Room room;
 
     public Tag() {
 
@@ -54,12 +52,12 @@ public class Tag implements Serializable, DataClass {
         this.name = name;
     }
 
-    public Set<Room> getRooms() {
-        return rooms;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRooms(Set<Room> rooms) {
-        this.rooms = rooms;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     @Override

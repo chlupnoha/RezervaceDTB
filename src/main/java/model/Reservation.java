@@ -9,11 +9,11 @@ import java.util.Calendar;
 
 /**
  * FighterAircraft data class.
- *
+ * <p>
  * Represents data model
  */
 @Entity(name = "Rezervations")
-public class Rezervation implements Serializable, DataClass {
+public class Reservation implements Serializable, DataClass {
 
     @Id
     @Column(unique = true, nullable = false)
@@ -40,20 +40,15 @@ public class Rezervation implements Serializable, DataClass {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE})
-    @JoinColumn(name = "room_id")
-    private Room room;
-
-    public Rezervation() {
+    public Reservation() {
 
     }
 
-    public Rezervation(Calendar fromDate, Calendar toDate, Confirmed confirmed, User user, Room room) {
+    public Reservation(Calendar fromDate, Calendar toDate, Confirmed confirmed, User user, Room room) {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.confirmed = confirmed;
         this.user = user;
-        this.room = room;
     }
 
     @Override
@@ -68,7 +63,7 @@ public class Rezervation implements Serializable, DataClass {
 
     @Override
     public String toString() {
-        return "Rezervation: {id: " + id + ", created: " + (created != null ? created.getTime() : "null") + ", fromDate: " + fromDate.getTime() + ", toDate: " + toDate.getTime() + ", confirmed: " + confirmed + "\n, user: " + user.toString() + "\n, room: " + room.toString() + "}";
+        return "Reservation: {id: " + id + ", created: " + (created != null ? created.getTime() : "null") + ", fromDate: " + fromDate.getTime() + ", toDate: " + toDate.getTime() + ", confirmed: " + confirmed + "\n, user: " + user.toString() + "}";
     }
 
     public Confirmed getConfirmed() {
@@ -85,14 +80,6 @@ public class Rezervation implements Serializable, DataClass {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
     }
 
     public Calendar getToDate() {

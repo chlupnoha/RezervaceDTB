@@ -4,7 +4,7 @@
  */
 package dao;
 
-import model.Rezervation;
+import model.Reservation;
 import org.hibernate.Session;
 
 import java.util.GregorianCalendar;
@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  * @author chlupnoha
  */
-public class RezervationDAOImp extends CommonDAOImpl<Rezervation> {
+public class RezervationDAOImp extends CommonDAOImpl<Reservation> {
 
     private static final Logger LOG = Logger.getLogger(RezervationDAOImp.class.getName());
 
@@ -22,13 +22,13 @@ public class RezervationDAOImp extends CommonDAOImpl<Rezervation> {
     }
 
     public RezervationDAOImp(Session session) {
-        super(Rezervation.class, session);
+        super(Reservation.class, session);
     }
 
     @Override
-    public Rezervation add(Rezervation rezervation) {
-        rezervation.setCreated(new GregorianCalendar());
-        return rezervation;
+    public Reservation add(Reservation reservation) {
+        reservation.setCreated(new GregorianCalendar());
+        return reservation;
     }
 
 }

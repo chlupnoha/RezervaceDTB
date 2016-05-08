@@ -19,7 +19,7 @@
     
     <mapping class="model.User"/>
     <mapping class="model.Room"/>
-    <mapping class="model.Rezervation"/>
+    <mapping class="model.Reservation"/>
     <mapping class="model.Tag"/>
     <mapping class="model.Equipment"/>
     <mapping class="model.Building"/>

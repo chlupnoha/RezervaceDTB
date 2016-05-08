@@ -72,10 +72,10 @@ public class RezervationDAOImpTest {
 //	Calendar from = new GregorianCalendar(2013,0,31);
 //	Calendar to = new GregorianCalendar(2013,3,31);
 //        
-//        Rezervation rezervation = new Rezervation(from, to, Confirmed.CONFIRMED, user, room);
+//        Reservation rezervation = new Reservation(from, to, Confirmed.CONFIRMED, user, room);
 //        
 //        RezervationDAOImp instance = new RezervationDAOImp();
-//        Rezervation result = instance.addRezervation(rezervation);
+//        Reservation result = instance.addRezervation(rezervation);
 //        
 //        System.out.println(result.toString());
 //        
@@ -89,7 +89,7 @@ public class RezervationDAOImpTest {
     public void testAddRezervation() {
         System.out.println("addRezervation");
 
-        User user = new User("rezervation@rezervation.cz", "password", "salt_salt", UserRole.GUEST);
+        User user = new User("reservation@reservation.cz", "password", "salt_salt", UserRole.GUEST);
         UserDAOImpl userDAO = new UserDAOImpl();
         User addUser = userDAO.add(user);
         System.out.println(addUser.toString());
@@ -106,10 +106,10 @@ public class RezervationDAOImpTest {
         Calendar from = new GregorianCalendar(2013, 0, 31);
         Calendar to = new GregorianCalendar(2013, 3, 31);
 
-        Rezervation rezervation = new Rezervation(from, to, Confirmed.CONFIRMED, user, room);
+        Reservation reservation = new Reservation(from, to, Confirmed.CONFIRMED, user, room);
 
         RezervationDAOImp instance = new RezervationDAOImp();
-        Rezervation result = instance.add(rezervation);
+        Reservation result = instance.add(reservation);
 
         System.out.println(result.toString());
 
@@ -122,10 +122,10 @@ public class RezervationDAOImpTest {
 //    @Test
 //    public void testUpdateRezervation() {
 //        System.out.println("updateRezervation");
-//        Rezervation rezervation = null;
+//        Reservation rezervation = null;
 //        RezervationDAOImp instance = new RezervationDAOImp();
-//        Rezervation expResult = null;
-//        Rezervation result = instance.updateRezervation(rezervation);
+//        Reservation expResult = null;
+//        Reservation result = instance.updateRezervation(rezervation);
 //        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
@@ -153,8 +153,8 @@ public class RezervationDAOImpTest {
 //    public void testGetAllRezervations() {
 //        System.out.println("getAllRezervations");
 //        RezervationDAOImp instance = new RezervationDAOImp();
-//        List<Rezervation> expResult = null;
-//        List<Rezervation> result = instance.getAllRezervations();
+//        List<Reservation> expResult = null;
+//        List<Reservation> result = instance.getAllRezervations();
 //        assertEquals(expResult, result);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
