@@ -4,18 +4,14 @@
  */
 package rezervace;
 
-
-import dao.UserDAOImpl;
+import dao.*;
 import gui.BookingSystemFrame;
-import model.User;
-import model.UserRole;
+import model.*;
 
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Date;
+import java.util.*;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;
@@ -79,6 +75,53 @@ public class Main {
         UserDAOImpl ruDAO = new UserDAOImpl();
         ruDAO.add(u1);
 
+        TagDAOImpl tagDAO = new TagDAOImpl();
+        Set<Tag> tags = new HashSet<>();
+        Tag tag = new Tag();
+        tag.setName("terrace");
+        tags.add(tag);
+        tagDAO.add(tag);
+        Tag tag1 = new Tag();
+        tag.setName("big");
+        tags.add(tag1);
+        tagDAO.add(tag1);
+        Tag tag2 = new Tag();
+        tag.setName("double_bed");
+        tags.add(tag2);
+        tagDAO.add(tag2);
+
+        Set<Image> images = new HashSet<>();
+        ImageDAOImpl imageDAO = new ImageDAOImpl();
+        Image image = new Image();
+        image.setName("image1");
+        imageDAO.add(image);
+        images.add(image);
+        Image image1 = new Image();
+        image1.setName("image2");
+        imageDAO.add(image1);
+        images.add(image1);
+
+        Set<Equipment> equipment = new HashSet<>();
+        EquipmentDAOImpl equipmentDAO = new EquipmentDAOImpl();
+        Equipment e = new Equipment();
+        e.setName("bath room");
+        equipmentDAO.add(e);
+        Equipment e1 = new Equipment();
+        e1.setName("TV");
+        equipmentDAO.add(e1);
+        Equipment e2 = new Equipment();
+        e2.setName("double_bed");
+        equipmentDAO.add(e2);
+        equipment.add(e);
+        equipment.add(e1);
+        equipment.add(e2);
+
+        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        Room room = new Room();
+        room.setTags(tags);
+        room.setImages(images);
+        room.setEquipment(equipment);
+        roomDAO.add(room);
     }
 
     private static void loggerSetup() throws SecurityException {

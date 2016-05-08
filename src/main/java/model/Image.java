@@ -19,17 +19,17 @@ public class Image implements Serializable, DataClass {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
-    
-    
+
+
     @Column(unique = true)
     private String name;
-    
-    
+
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
     private Set<Room> rooms = new HashSet<>();
-        
-    public Image(){
-        
+
+    public Image() {
+
     }
 
     public Image(String name) {
@@ -61,10 +61,10 @@ public class Image implements Serializable, DataClass {
     public void setRooms(Set<Room> rooms) {
         this.rooms = rooms;
     }
-    
+
     @Override
     public String toString() {
-        return "Image: { \"id\": " +  id + ", \"name\": " + name +  "}";
+        return "Image: { \"id\": " + id + ", \"name\": " + name + "}";
     }
-   
+
 }
