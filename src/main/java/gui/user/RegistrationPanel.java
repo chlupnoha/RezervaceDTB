@@ -24,7 +24,7 @@ public class RegistrationPanel extends ManagedCard {
     private JPasswordField passwordAgainTextField = new JPasswordField(10);
     private CardChoosingButton proceedButton = new CardChoosingButton("Register!", UserLoginPanel.class, new RegistrationConstraint(userNameTextField, passwordTextField, passwordAgainTextField));
     private CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Login", RegistrationPanel.class);
+    private CardChoosingButton registrationButton = new CardChoosingButton("Login", UserLoginPanel.class);
 
     {
         setupComponents();

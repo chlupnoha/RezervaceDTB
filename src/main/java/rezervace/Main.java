@@ -32,6 +32,12 @@ public class Main {
     private static final int LOG_MAX_FILES_COUNT = 10;
     private static final boolean LOG_APPEND = false;
 
+    private static ImageDAOImpl imageDAO = new ImageDAOImpl();
+    private static TagDAOImpl tagDAO = new TagDAOImpl();
+    private static EquipmentDAOImpl equipmentDAO = new EquipmentDAOImpl();
+    private static RoomDAOImpl roomDAO = new RoomDAOImpl();
+
+
     /**
      * Run different methods according to first argument.
      *
@@ -57,7 +63,12 @@ public class Main {
         UserDAOImpl ruDAO = new UserDAOImpl();
         ruDAO.add(u1);
 
-        TagDAOImpl tagDAO = new TagDAOImpl();
+        addAnother();
+        addAnother();
+    }
+
+    private static void addAnother() {
+
         Set<Tag> tags = new HashSet<>();
         Tag tag = new Tag();
         tag.setName("terrace");
@@ -73,7 +84,7 @@ public class Main {
         tagDAO.add(tag2);
 
         Set<Image> images = new HashSet<>();
-        ImageDAOImpl imageDAO = new ImageDAOImpl();
+
         Image image = new Image();
         image.setName("image1");
         imageDAO.add(image);
@@ -84,7 +95,7 @@ public class Main {
         images.add(image1);
 
         Set<Equipment> equipment = new HashSet<>();
-        EquipmentDAOImpl equipmentDAO = new EquipmentDAOImpl();
+
         Equipment e = new Equipment();
         e.setName("bath room");
         equipmentDAO.add(e);
@@ -98,7 +109,6 @@ public class Main {
         equipment.add(e1);
         equipment.add(e2);
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
         Room room = new Room();
         room.setTags(tags);
         room.setImages(images);

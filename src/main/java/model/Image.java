@@ -18,8 +18,6 @@ public class Image implements Serializable, DataClass {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
-
-    @Column(unique = true)
     private String name;
 
 

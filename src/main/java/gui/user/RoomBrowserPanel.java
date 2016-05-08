@@ -2,10 +2,14 @@ package gui.user;
 
 import dao.RoomDAOImpl;
 import gui.ManagedCard;
+import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.RoomPreviewPanel;
+import model.Room;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by marek on 8.5.16.
@@ -15,11 +19,13 @@ public class RoomBrowserPanel extends ManagedCard {
 
     private JButton nextButton = new JButton("Next");
     private JButton previousButton = new JButton("Previous");
-    private JButton menuButton = new JButton("Menu");
-    private JButton logoutButton = new JButton("Make reservation");
+    private JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
+    private JButton logoutButton = new CardChoosingButton("Make reservation", MakeReservationPanel.class);
 
-    private JPanel cards;
+    private JPanel cards = new JPanel(new CardLayout());
     private CardLayout cardLayout;
+    private RoomDAOImpl roomDAO = new RoomDAOImpl();
+    private JPanel centerPanel;
 
     {
         setupComponents();
@@ -27,23 +33,34 @@ public class RoomBrowserPanel extends ManagedCard {
 
     public RoomBrowserPanel() {
         super(new BorderLayout());
-        //this.cards = new JPanel(new CardLayout());
-        //cardLayout = (CardLayout) cards.getLayout();
-
-        //RoomDAOImpl roomDAO = new RoomDAOImpl();
     }
 
     @Override
     public void setupComponents() {
         JPanel topPanel = upperMenu();
-        JPanel bottomPanel = bottomMenu();
+        final JPanel bottomPanel = bottomMenu();
 
-        RoomDAOImpl roomDAO = new RoomDAOImpl();
+        for (Room room : roomDAO.getAll()) {
+            cards.add(new RoomPreviewPanel(room));
+        }
+        cardLayout = (CardLayout) cards.getLayout();
 
-        JPanel centerPanel = new RoomPreviewPanel(roomDAO.getAll().get(0));
-        add(centerPanel, BorderLayout.CENTER);
+
+        add(cards, BorderLayout.CENTER);
 
 
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.next(cards);
+            }
+        });
+        previousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.previous(cards);
+            }
+        });
     }
 
 
