@@ -17,7 +17,7 @@ public class RoomPreviewPanel extends JPanel {
     private Room room;
 
     public RoomPreviewPanel(Room room) {
-        super(new GridLayout(0, 2));
+        super(new BorderLayout());
         this.room = room;
         imagePanel = new ImagePanel(room.getImages(), 400, 300);
         setup();
@@ -26,14 +26,17 @@ public class RoomPreviewPanel extends JPanel {
     public void setup() {
 
 
-        setPreferredSize(new Dimension(0, 350));
+        JPanel mainPanel = new JPanel(new GridLayout(0, 2));
+        add(mainPanel, BorderLayout.PAGE_START);
+
+        mainPanel.setPreferredSize(new Dimension(0, 350));
 
         JPanel desriptionPanel = new JPanel(new GridLayout(6, 2));
 
         imagePanel.setPreferredSize(new Dimension(400, 300));
-        add(imagePanel, BorderLayout.LINE_START);
-        add(desriptionPanel, BorderLayout.LINE_END);
-        setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+        mainPanel.add(imagePanel, BorderLayout.LINE_START);
+        mainPanel.add(desriptionPanel, BorderLayout.LINE_END);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         desriptionPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
         JLabel roomName = new JLabel(String.valueOf("Room #" + room.getId()));
@@ -68,4 +71,5 @@ public class RoomPreviewPanel extends JPanel {
 
 
     }
+
 }

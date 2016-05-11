@@ -4,23 +4,29 @@ import dao.RoomDAOImpl;
 import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.RoomPreviewPanel;
+import gui.customcomponents.RoomReservationPanel;
 import model.Room;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by marek on 8.5.16.
  */
 public class RoomBrowserPanel extends ManagedCard {
 
-
     private JButton nextButton = new JButton("Next");
     private JButton previousButton = new JButton("Previous");
+
     private JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
-    private JButton logoutButton = new CardChoosingButton("Make reservation", MakeReservationPanel.class);
+    private JButton makeReservationButton = new JButton("Make reservation");
+
+    private List<JPanel> previews = new ArrayList<>();
+    private List<JPanel> reservations = new ArrayList<>();
 
     private JPanel cards = new JPanel(new CardLayout());
     private CardLayout cardLayout;
@@ -37,32 +43,28 @@ public class RoomBrowserPanel extends ManagedCard {
 
     @Override
     public void setupComponents() {
-        JPanel topPanel = upperMenu();
         final JPanel bottomPanel = bottomMenu();
+        JPanel topPanel = upperMenu();
 
+        JPanel temp;
         for (Room room : roomDAO.getAll()) {
-            cards.add(new RoomPreviewPanel(room));
+            temp = new RoomPreviewPanel(room);
+            cards.add(temp, String.format("%d preview", room.getId()));
+            previews.add(temp);
+
+            temp = new RoomReservationPanel(room);
+            cards.add(temp, String.format("%d reserv", room.getId()));
+            reservations.add(temp);
         }
         cardLayout = (CardLayout) cards.getLayout();
 
 
         add(cards, BorderLayout.CENTER);
 
+        nextButton.addActionListener(e -> cardLayout.next(cards));
+        previousButton.addActionListener(e -> cardLayout.previous(cards));
 
-        nextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.next(cards);
-            }
-        });
-        previousButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.previous(cards);
-            }
-        });
     }
-
 
     private JPanel upperMenu() {
         JPanel topPanel = new JPanel(new BorderLayout());
@@ -80,7 +82,17 @@ public class RoomBrowserPanel extends ManagedCard {
         add(bottomPanel, BorderLayout.PAGE_END);
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         bottomPanel.add(menuButton, BorderLayout.LINE_START);
-        bottomPanel.add(logoutButton, BorderLayout.LINE_END);
+        bottomPanel.add(makeReservationButton, BorderLayout.LINE_END);
+
+        makeReservationButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         return bottomPanel;
     }
+
+
 }
