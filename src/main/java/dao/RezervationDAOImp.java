@@ -28,7 +28,7 @@ public class RezervationDAOImp extends CommonDAOImpl<Reservation> {
     @Override
     public Reservation add(Reservation reservation) {
         reservation.setCreated(new GregorianCalendar());
-        return reservation;
+        return super.add(reservation);
     }
 
 }
