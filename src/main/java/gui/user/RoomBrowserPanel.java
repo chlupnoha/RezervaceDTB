@@ -11,8 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * Created by marek on 8.5.16.
@@ -25,9 +24,10 @@ public class RoomBrowserPanel extends ManagedCard {
     private JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
     private JButton makeReservationButton = new JButton("Make reservation");
 
-    private List<JPanel> previews = new ArrayList<>();
-    private List<JPanel> reservations = new ArrayList<>();
+    private LinkedList<RoomPreviewPanel> previews = new LinkedList<>();
+    private LinkedList<JPanel> reservations = new LinkedList<>();
 
+    private boolean state = false;
     private JPanel cards = new JPanel(new CardLayout());
     private CardLayout cardLayout;
     private RoomDAOImpl roomDAO = new RoomDAOImpl();
@@ -46,23 +46,22 @@ public class RoomBrowserPanel extends ManagedCard {
         final JPanel bottomPanel = bottomMenu();
         JPanel topPanel = upperMenu();
 
-        JPanel temp;
+        RoomPreviewPanel temp;
+        RoomReservationPanel temp1;
         for (Room room : roomDAO.getAll()) {
             temp = new RoomPreviewPanel(room);
             cards.add(temp, String.format("%d preview", room.getId()));
             previews.add(temp);
 
-            temp = new RoomReservationPanel(room);
-            cards.add(temp, String.format("%d reserv", room.getId()));
-            reservations.add(temp);
+            temp1 = new RoomReservationPanel(room);
+            cards.add(temp1, String.format("%d reserv", room.getId()));
+            reservations.add(temp1);
         }
         cardLayout = (CardLayout) cards.getLayout();
 
 
         add(cards, BorderLayout.CENTER);
 
-        nextButton.addActionListener(e -> cardLayout.next(cards));
-        previousButton.addActionListener(e -> cardLayout.previous(cards));
 
     }
 
@@ -87,10 +86,53 @@ public class RoomBrowserPanel extends ManagedCard {
         makeReservationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (!state) {
+                    if (!previews.isEmpty()) {
+                        RoomPreviewPanel r = previews.peek();
+                        cardLayout.show(cards, (r.getId() + " reserv"));
+
+                        makeReservationButton.setText("Back");
+                        nextButton.setEnabled(false);
+                        previousButton.setEnabled(false);
+                        state = true;
+                    }
+                } else {
+                    RoomPreviewPanel r = previews.peek();
+                    cardLayout.show(cards, (r.getId() + " preview"));
+
+                    makeReservationButton.setText("Make reservation");
+                    nextButton.setEnabled(true);
+                    previousButton.setEnabled(true);
+                    state = false;
+                }
+
 
             }
         });
+        nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RoomPreviewPanel r = previews.poll();
+                previews.add(r);
 
+                JPanel r1 = reservations.poll();
+                reservations.add(r1);
+
+                cardLayout.show(cards, (previews.peek().getId() + " preview"));
+            }
+        });
+        previousButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RoomPreviewPanel r = previews.pollLast();
+                previews.addFirst(r);
+
+                JPanel r1 = reservations.pollLast();
+                reservations.addFirst(r1);
+
+                cardLayout.show(cards, (previews.peek().getId() + " preview"));
+            }
+        });
         return bottomPanel;
     }
 

@@ -71,5 +71,7 @@ public class RoomPreviewPanel extends JPanel {
 
 
     }
-
+    public Long getId() {
+        return room.getId();
+    }
 }
