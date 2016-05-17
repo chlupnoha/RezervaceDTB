@@ -16,11 +16,14 @@
  */
 package dao;
 
+import java.sql.BatchUpdateException;
 import model.User;
 import model.UserRole;
 import org.junit.*;
 
 import java.util.List;
+import javax.validation.ConstraintViolationException;
+import org.hibernate.HibernateException;
 
 import static org.junit.Assert.*;
 
@@ -61,6 +64,21 @@ public class UserDAOImplTest {
         User result = instance.add(user);
         System.out.println(result.toString());
         assertNotNull(result);
+    }
+
+
+    /**
+     * Test of addUser method, of class UserDAOImpl.
+     */
+    @Test(expected=HibernateException.class)
+    public void testAddUserSameEamilException() {
+        System.out.println("addUser");
+        User user = new User("test_mai2l@test.cz", "test_password", "test_salt", UserRole.GUEST);
+        User user2 = new User("test_mai2l@test.cz", "test_password", "test_salt", UserRole.GUEST);
+        UserDAOImpl instance = new UserDAOImpl();
+
+        instance.add(user);
+        instance.add(user2);
     }
 
     /**

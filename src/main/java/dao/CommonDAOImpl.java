@@ -69,6 +69,8 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
                 tx.rollback();
             }
             LOG.log(Level.SEVERE, null, e);
+            //WE WANT TO PROPAGATER EXCEPTION UPPER, AND MAKE ACTION
+            throw e;
         } finally {
             getSession().close();
         }

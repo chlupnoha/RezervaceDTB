@@ -74,7 +74,7 @@ public class RoomDAOImplTest {
 
         BuildingDAOImpl buildingDao = new BuildingDAOImpl();
         Building building = buildingDao.add(
-                new Building("testBuilding", "999666333", "test@test.test", "adressTest")
+                new Building("testBuilding23", "999666333", "tesASEt@test.test", "adressTest")
         );
 
         room.setBuilding(building);
