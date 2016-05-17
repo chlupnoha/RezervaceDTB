@@ -49,6 +49,11 @@ public class RoomBrowserPanel extends ManagedCard {
         RoomPreviewPanel temp;
         RoomReservationPanel temp1;
         for (Room room : roomDAO.getAll()) {
+            if (room != null) {
+                System.out.println("NO SHIT MANNNNANDASND");
+                System.out.println(room);
+            }
+
             temp = new RoomPreviewPanel(room);
             cards.add(temp, String.format("%d preview", room.getId()));
             previews.add(temp);

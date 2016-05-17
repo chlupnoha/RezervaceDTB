@@ -16,12 +16,14 @@ public class RoomReservationPanel extends JPanel {
     private ErrorLabel errorLabel = new ErrorLabel();
     private DatePicker datePickerFrom = new DatePicker("FROM");
     private DatePicker datePickerTo = new DatePicker("TO");
-    private CardChoosingButton makeReservationButton = new CardChoosingButton("Make reservation", UserGuidepostPanel.class, new ReservationConstraint(errorLabel, room, datePickerFrom, datePickerTo));
+    private CardChoosingButton makeReservationButton;
 
     public RoomReservationPanel(Room room) {
         super(new BorderLayout());
 
         this.room = room;
+
+        makeReservationButton = new CardChoosingButton("Make reservation", UserGuidepostPanel.class, new ReservationConstraint(errorLabel, room, datePickerFrom, datePickerTo));
         setupComponents();
     }
 
@@ -32,7 +34,6 @@ public class RoomReservationPanel extends JPanel {
 
     private JPanel addUpperMenu() {
         if (room == null) {
-            System.out.println("nic");
             return null;
         }
         JPanel mainPanel = new JPanel(new GridLayout(0, 4));

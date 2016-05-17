@@ -91,7 +91,7 @@ public class Room implements Serializable, DataClass {
 
     @Override
     public String toString() {
-        return "Room: {\"id\": " + id + ", \"building\" : {" + building.toString() + "}";
+        return "Room: {\"id\": " + id + ",+ }";
     }
 
     public Set<Reservation> getReservations() {

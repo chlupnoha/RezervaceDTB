@@ -38,16 +38,26 @@ public class ReservationConstraint extends PermissionConstraint {
 
     @Override
     public boolean isOk() {
+
+
         UserDAOImpl userDAO = new UserDAOImpl();
         RoomDAOImpl roomDAO = new RoomDAOImpl();
         RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
 
         User user = Authorization.getUser();
+
         Reservation r = new Reservation(new GregorianCalendar(), new GregorianCalendar(), Confirmed.NOT_CONFIRMED, user, room);
         user.getReservations().add(r);
         user.getWereThere().add(room);
         room.getWereHere().add(user);
 
+        rezervationDAOImp.add(r);
+        user = userDAO.update(user);
+        Authorization.updateUser(user);
+        room = roomDAO.update(room);
+
         return true;
     }
+
+
 }

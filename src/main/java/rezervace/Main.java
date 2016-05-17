@@ -7,6 +7,7 @@ package rezervace;
 import dao.*;
 import gui.BookingSystemFrame;
 import model.*;
+import utility.Authorization;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -65,6 +66,12 @@ public class Main {
 
         addAnother();
         addAnother();
+
+        try {
+            Authorization.login("email@email.cz", "password");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void addAnother() {

@@ -40,4 +40,8 @@ public class Authorization {
         return userByEmail;
     }
 
+    public static void updateUser(User user) {
+        Authorization.userByEmail = user;
+    }
+
 }
