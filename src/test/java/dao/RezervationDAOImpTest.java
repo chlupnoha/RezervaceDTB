@@ -81,7 +81,6 @@ public class RezervationDAOImpTest {
 //        
 //        assertNotNull(result.getId());
 //    }
-
     /**
      * Test of addRezervation method, of class RezervationDAOImp.
      */
@@ -89,29 +88,27 @@ public class RezervationDAOImpTest {
     public void testAddRezervation() {
         System.out.println("addRezervation");
 
-        User user = new User("reservation@reservation.cz", "password", "salt_salt", UserRole.GUEST);
+        User user = new User("reservati3on@reservation.cz", "pass3word", "salt_salt", UserRole.GUEST);
         UserDAOImpl userDAO = new UserDAOImpl();
         User addUser = userDAO.add(user);
-        System.out.println(addUser.toString());
+        assertNotNull(addUser.getId());
 
         BuildingDAOImpl buildingDao = new BuildingDAOImpl();
-        Building building = buildingDao.add(new Building("name", "888777666", "test@test.cz", "adress"));
+        Building building = buildingDao.add(new Building("na3me", "888777666", "tes3t@test.cz", "adress"));
+        assertNotNull(building.getId());
 
         Room room = new Room(building);
         RoomDAOImpl roomDAO = new RoomDAOImpl();
         Room addRoom = roomDAO.add(room);
-        System.out.println(addRoom.toString());
-
+        assertNotNull(addRoom.getId());
 
         Calendar from = new GregorianCalendar(2013, 0, 31);
         Calendar to = new GregorianCalendar(2013, 3, 31);
 
-        Reservation reservation = new Reservation(from, to, Confirmed.CONFIRMED, user, room);
+        Reservation reservation = new Reservation(from, to, Confirmed.CONFIRMED, addUser, addRoom);
 
         RezervationDAOImp instance = new RezervationDAOImp();
         Reservation result = instance.add(reservation);
-
-        System.out.println(result.toString());
 
         assertNotNull(result.getId());
     }
@@ -159,5 +156,4 @@ public class RezervationDAOImpTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-
 }
