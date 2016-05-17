@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  */
 public class SSHHashing {
 
-    public static String createHasd(String s) {
+    public static String createHash(String s) {
         String password = "123456";
 
         MessageDigest md;

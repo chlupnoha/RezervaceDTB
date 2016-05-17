@@ -8,6 +8,8 @@ import model.User;
 import org.hibernate.Session;
 
 import java.util.logging.Logger;
+import org.apache.commons.lang.RandomStringUtils;
+import utility.SSHHashing;
 
 /**
  * @author chlupnoha
@@ -23,5 +25,12 @@ public class UserDAOImpl extends CommonDAOImpl<User> {
     public UserDAOImpl(Session session) {
         super(User.class, session);
     }
-
+    
+    @Override
+    public User add(User user){
+        String salt = RandomStringUtils.randomAlphanumeric(10).toLowerCase();
+        user.setSalt(salt);
+        user.setPassword(SSHHashing.createHash(user.getPassword()+salt));
+        return super.add(user);
+    }    
 }

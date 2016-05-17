@@ -57,7 +57,7 @@ public class SSHHashingTest {
         String s = "123456";
         //SSHHashing instance = new SSHHashing();
         String expResult = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
-        String result = SSHHashing.createHasd(s);
+        String result = SSHHashing.createHash(s);
         assertEquals(expResult, result);
     }
     
