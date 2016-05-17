@@ -45,6 +45,12 @@ public class User implements Serializable, DataClass {
 
     }
 
+    public User(String email, String password, UserRole role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
     public User(String email, String password, String salt, UserRole role) {
         this.email = email;
         this.password = password;

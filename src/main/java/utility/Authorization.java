@@ -22,7 +22,7 @@ public class Authorization {
             }
         }
         String hashedPassword = SSHHashing.createHash(userByEmail.getSalt() + password);
-        if(hashedPassword != userByEmail.getPassword()){
+        if(!hashedPassword.equals(userByEmail.getPassword())){
             throw new Exception("Incorrect password");
         }
         return userByEmail;
