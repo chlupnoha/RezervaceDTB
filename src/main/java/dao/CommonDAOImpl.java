@@ -220,7 +220,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
         List entities = null;
         try {
             tx = getSession().beginTransaction();
-            Query q = getSession().createQuery(String.format("FROM User WHERE %s = :value", columnName));
+            Query q = getSession().createQuery(String.format("FROM " + entityName + " WHERE %s = :value", columnName));
             q.setParameter("value", value);
             entities = q.list();
             tx.commit();
@@ -233,5 +233,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
         }
         return (List<T>) (Object) entities;
     }
+
 }
 

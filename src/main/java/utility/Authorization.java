@@ -1,17 +1,28 @@
 package utility;
 
 import dao.UserDAOImpl;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.User;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
- *
  * @author chlupnoha
  */
 public class Authorization {
 
-    public User authorization(String email, String password) throws Exception {
+    private static User userByEmail;
+
+
+    private Authorization() {
+    }
+
+
+    public static User getUser() {
+        return userByEmail;
+    }
+
+    public static User login(String email, String password) throws Exception {
         UserDAOImpl userDAO = new UserDAOImpl();
         User userByEmail = userDAO.getFirstByColumn(User.class, email, "email");
         if (userByEmail == null) {
@@ -22,9 +33,10 @@ public class Authorization {
             }
         }
         String hashedPassword = SSHHashing.createHash(userByEmail.getSalt() + password);
-        if(!hashedPassword.equals(userByEmail.getPassword())){
+        if (!hashedPassword.equals(userByEmail.getPassword())) {
             throw new Exception("Incorrect password");
         }
+        Authorization.userByEmail = userByEmail;
         return userByEmail;
     }
 

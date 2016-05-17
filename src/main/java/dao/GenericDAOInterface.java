@@ -12,7 +12,7 @@ public interface GenericDAOInterface<T> {
     T getById(Long Id);
 
     T getFirstByColumn(Class<T> clazz, String value, String columnName);
-    
+
     List<T> getAllByColumn(Class<T> clazz, String value, String columnName);
 
     List<T> getAll();

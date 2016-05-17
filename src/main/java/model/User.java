@@ -38,8 +38,11 @@ public class User implements Serializable, DataClass {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Reservation> reservations = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Room> wereThere = new HashSet<>();
 
     public User() {
 
@@ -113,4 +116,11 @@ public class User implements Serializable, DataClass {
         return "id: " + id + ", email: " + email + ", passwordHash: " + password + ", salt: " + salt;
     }
 
+    public Set<Room> getWereThere() {
+        return wereThere;
+    }
+
+    public void setWereThere(Set<Room> wereThere) {
+        this.wereThere = wereThere;
+    }
 }

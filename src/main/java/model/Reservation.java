@@ -40,6 +40,9 @@ public class Reservation implements Serializable, DataClass {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne
+    private Room room;
+
     public Reservation() {
 
     }
@@ -49,6 +52,7 @@ public class Reservation implements Serializable, DataClass {
         this.toDate = toDate;
         this.confirmed = confirmed;
         this.user = user;
+        this.room = room;
     }
 
     @Override
@@ -106,4 +110,11 @@ public class Reservation implements Serializable, DataClass {
         this.created = created;
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }

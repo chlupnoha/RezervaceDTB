@@ -24,14 +24,20 @@ public class Room implements Serializable, DataClass {
     @JoinColumn(name = "building_id")
     private Building building;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Tag> tags = new HashSet<>(0);
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Equipment> equipment = new HashSet<>(0);
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Image> images = new HashSet<>(0);
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Reservation> reservations = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<User> wereHere = new HashSet<>();
 
     public Room() {
 
@@ -88,4 +94,19 @@ public class Room implements Serializable, DataClass {
         return "Room: {\"id\": " + id + ", \"building\" : {" + building.toString() + "}";
     }
 
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Set<User> getWereHere() {
+        return wereHere;
+    }
+
+    public void setWereHere(Set<User> wereHere) {
+        this.wereHere = wereHere;
+    }
 }

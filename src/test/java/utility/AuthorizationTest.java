@@ -52,7 +52,7 @@ public class AuthorizationTest {
     }
 
     /**
-     * Test of authorization method, of class Authorization.
+     * Test of login method, of class Authorization.
      */
     @Test
     public void testAuthorization() throws Exception {
@@ -61,10 +61,9 @@ public class AuthorizationTest {
         UserDAOImpl userDao = new UserDAOImpl();
         User addUser = userDao.add(user);
         
-        System.out.println("authorization");
-        
-        Authorization instance = new Authorization();
-        User resultUser = instance.authorization(user.getEmail(), user.getPassword());
+        System.out.println("login");
+
+        User resultUser = Authorization.login(user.getEmail(), user.getPassword());
         
         System.out.println(addUser.getPassword());
         System.out.println(resultUser.getPassword());
