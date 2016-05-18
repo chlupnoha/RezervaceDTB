@@ -22,8 +22,6 @@ public class UsersTable extends ManagedCard {
     public UsersTable() {
         super(new BorderLayout());
 
-        DataProvider dataProvider = new DataProvider();
-//        dataProvider.fillDatabase();
         userDao = new UserDAOImpl();
         List<User> allUsers = userDao.getAll();
 
@@ -80,6 +78,7 @@ public class UsersTable extends ManagedCard {
         //Add the scroll pane to this panel.
         add(scrollPane, BorderLayout.CENTER);
         add(new CardChoosingButton("ADD NEW", UserForm.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
+        add(new CardChoosingButton("BACK", TableController.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
     }
 
     @Override

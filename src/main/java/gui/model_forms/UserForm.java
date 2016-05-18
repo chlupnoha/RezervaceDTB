@@ -58,7 +58,7 @@ public class UserForm extends ManagedCard {
         });
 
         add(submit);
-
+        add(new CardChoosingButton("BACK", UsersTable.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
 
     }
 
