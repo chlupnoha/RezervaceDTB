@@ -5,7 +5,6 @@ import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.ErrorLabel;
 import gui.permission.UserLoginConstraint;
 import gui.table.TableController;
-import gui.table.UsersTable;
 
 import javax.swing.*;
 import java.awt.*;
