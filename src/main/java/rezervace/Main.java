@@ -148,19 +148,11 @@ public class Main {
     private static void deleteOldLogs() {
         File logDir = new File(LOG_DIR);
         if (logDir.canRead() && logDir.isDirectory()) {
-            File[] logs = logDir.listFiles(new FilenameFilter() {
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.matches(".*\\.log$");
-                }
+            File[] logs = logDir.listFiles((dir, name) -> {
+                return name.matches(".*\\.log$");
             });
             if (logs.length >= LOG_MAX_FILES_COUNT) {
-                Arrays.sort(logs, 0, logs.length, new Comparator<File>() {
-                    @Override
-                    public int compare(File o1, File o2) {
-                        return (int) Math.signum(o1.lastModified() - o2.lastModified());
-                    }
-                });
+                Arrays.sort(logs, 0, logs.length, (o1, o2) -> (int) Math.signum(o1.lastModified() - o2.lastModified()));
                 for (int i = 0; i < logs.length - LOG_MAX_FILES_COUNT; i++) {
                     LOG.log(Level.FINE, "Deleting old log {0}", logs[i]);
                     logs[i].delete();
