@@ -5,60 +5,53 @@ import dataProvider.DataProvider;
 import model.User;
 
 import javax.swing.*;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class UsersTable extends JPanel {
 
     public UsersTable() {
-        super(new GridLayout(0, 4));
+        super(new GridLayout(1, 0));
 
-        DataProvider dataProvider = new DataProvider();
-        dataProvider.fillDatabase();
+//        DataProvider dataProvider = new DataProvider();
+//        dataProvider.fillDatabase();
 
         UserDAOImpl userDao = new UserDAOImpl();
         List<User> allUsers = userDao.getAll();
 
-        class AddListeneser implements ActionListener {
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+        table.setPreferredScrollableViewportSize(new Dimension(400, 200));
+        table.setFillsViewportHeight(true);
 
-            Long id;
+        // Create a couple of columns
+        model.addColumn("ID");
+        model.addColumn("EMAIL");
+        model.addColumn("ROLE");
 
-            public AddListeneser(Long id) {
-                this.id = id;
-            }
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                UserDAOImpl u = new UserDAOImpl();
-
-                // muzeme pracovat s ID
-                // BLA BLA BLA
-            }
-        }
-
-
+        // Append a row
         allUsers.stream().forEach((u) -> {
-            add(new JLabel(u.getId().toString()));
-            add(new JLabel(u.getEmail().toString()));
-            add(new JLabel(u.getRole().toString()));
-            JButton j = new JButton("delete");
-            j.addActionListener(new AddListeneser(u.getId()));
-            add(j);
+            model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString()});
+        });
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                JTable target = (JTable) e.getSource();
+                int row = target.getSelectedRow();
+                int column = target.getSelectedColumn();
+                // do some action if appropriate column
+                System.out.println(row + " no shit " + column);
+            }
         });
 
 
-        // Append a row
-
-        //table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-        //table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
         //Create the scroll pane and add the table to it.
-        //JScrollPane scrollPane = new JScrollPane(table);
+        JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this panel.
-        //add(scrollPane);
+        add(scrollPane);
     }
 
     /**
@@ -66,6 +59,8 @@ public class UsersTable extends JPanel {
      * invoked from the event-dispatching thread.
      */
     private static void createAndShowGUI() {
+        new DataProvider().fillUser(15);
+
         //Create and set up the window.
         JFrame frame = new JFrame("SimpleTableDemo");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,6 +69,7 @@ public class UsersTable extends JPanel {
         UsersTable newContentPane = new UsersTable();
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
+//        frame.setPreferredSize(new Dimension(800, 700));
 
         //Display the window.
         frame.pack();
@@ -91,79 +87,3 @@ public class UsersTable extends JPanel {
     }
 }
 
-
-class ButtonRenderer extends JButton implements TableCellRenderer {
-
-    public ButtonRenderer() {
-        setOpaque(true);
-    }
-
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value,
-                                                   boolean isSelected, boolean hasFocus, int row, int column) {
-        if (isSelected) {
-            setForeground(table.getSelectionForeground());
-            setBackground(table.getSelectionBackground());
-        } else {
-            setForeground(table.getForeground());
-            setBackground(UIManager.getColor("Button.background"));
-        }
-        setText((value == null) ? "" : value.toString());
-        return this;
-    }
-}
-
-class ButtonEditor extends DefaultCellEditor {
-
-    protected JButton button;
-    private String label;
-    private boolean isPushed;
-
-    public ButtonEditor(JCheckBox checkBox) {
-        super(checkBox);
-        button = new JButton();
-        button.setOpaque(true);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                fireEditingStopped();
-            }
-        });
-    }
-
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value,
-                                                 boolean isSelected, int row, int column) {
-        if (isSelected) {
-            button.setForeground(table.getSelectionForeground());
-            button.setBackground(table.getSelectionBackground());
-        } else {
-            button.setForeground(table.getForeground());
-            button.setBackground(table.getBackground());
-        }
-        label = (value == null) ? "" : value.toString();
-        button.setText(label);
-        isPushed = true;
-        return button;
-    }
-
-    @Override
-    public Object getCellEditorValue() {
-        if (isPushed) {
-            JOptionPane.showMessageDialog(button, label + ": Ouch!");
-        }
-        isPushed = false;
-        return label;
-    }
-
-    @Override
-    public boolean stopCellEditing() {
-        isPushed = false;
-        return super.stopCellEditing();
-    }
-
-    @Override
-    protected void fireEditingStopped() {
-        super.fireEditingStopped();
-    }
-}
