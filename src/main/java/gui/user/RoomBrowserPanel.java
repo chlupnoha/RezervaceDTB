@@ -24,11 +24,10 @@ public class RoomBrowserPanel extends ManagedCard {
 
     private final LinkedList<RoomPreviewPanel> previews = new LinkedList<>();
     private final LinkedList<JPanel> reservations = new LinkedList<>();
-
-    private boolean state = false;
     private final JPanel cards = new JPanel(new CardLayout());
-    private CardLayout cardLayout;
     private final RoomDAOImpl roomDAO = new RoomDAOImpl();
+    private boolean state = false;
+    private CardLayout cardLayout;
     private JPanel centerPanel;
 
     {

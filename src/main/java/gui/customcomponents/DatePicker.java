@@ -53,19 +53,19 @@ public class DatePicker extends JPanel {
 
         add(new JLabel("Month:"));
         JComboBox monthList = new JComboBox();
-        Arrays.stream(Month.values()).forEach((m) -> monthList.addItem(m));
+        Arrays.stream(Month.values()).forEach(monthList::addItem);
         add(monthList);
         this.monthList = monthList;
 
         add(new JLabel("Day:"));
         JComboBox dayList = new JComboBox();
-        IntStream.range(1, 13).forEach((i) -> dayList.addItem(i));
+        IntStream.range(1, 13).forEach(dayList::addItem);
         add(dayList);
         this.dayList = dayList;
 
         add(new JLabel("Year:"));
         JComboBox yearList = new JComboBox();
-        IntStream.range(2016, 2017).forEach((i) -> yearList.addItem(i));
+        IntStream.range(2016, 2017).forEach(yearList::addItem);
         add(yearList);
         this.yearList = yearList;
 

@@ -42,9 +42,7 @@ public class UsersTable extends ManagedCard {
         model.addColumn("UDPATE");
 
         // Append a row
-        allUsers.stream().forEach((u) -> {
-            model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString(), "DELETE", "UPDATE"});
-        });
+        allUsers.stream().forEach((u) -> model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString(), "DELETE", "UPDATE"}));
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
