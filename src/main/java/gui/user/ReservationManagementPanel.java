@@ -13,7 +13,7 @@ import java.awt.*;
 /**
  * Created by marek on 18.5.16.
  */
-public class RegistrationManagementPanel extends ManagedCard {
+public class ReservationManagementPanel extends ManagedCard {
     private JButton nextButton = new JButton("Next");
     private JButton previousButton = new JButton("Previous");
 
@@ -24,7 +24,7 @@ public class RegistrationManagementPanel extends ManagedCard {
         setupComponents();
     }
 
-    public RegistrationManagementPanel() {
+    public ReservationManagementPanel() {
         super(new BorderLayout());
     }
 
