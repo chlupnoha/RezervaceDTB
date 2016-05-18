@@ -34,10 +34,10 @@ public class Main {
     private static final int LOG_MAX_FILES_COUNT = 10;
     private static final boolean LOG_APPEND = false;
 
-    private static ImageDAOImpl imageDAO = new ImageDAOImpl();
-    private static TagDAOImpl tagDAO = new TagDAOImpl();
-    private static EquipmentDAOImpl equipmentDAO = new EquipmentDAOImpl();
-    private static RoomDAOImpl roomDAO = new RoomDAOImpl();
+    private static final ImageDAOImpl imageDAO = new ImageDAOImpl();
+    private static final TagDAOImpl tagDAO = new TagDAOImpl();
+    private static final EquipmentDAOImpl equipmentDAO = new EquipmentDAOImpl();
+    private static final RoomDAOImpl roomDAO = new RoomDAOImpl();
 
 
     /**
