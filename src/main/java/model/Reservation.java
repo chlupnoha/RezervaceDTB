@@ -36,7 +36,7 @@ public class Reservation implements Serializable, DataClass {
     @Enumerated(EnumType.STRING)
     private Confirmed confirmed;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

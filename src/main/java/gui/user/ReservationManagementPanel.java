@@ -2,6 +2,7 @@ package gui.user;
 
 import dao.RezervationDAOImp;
 import dao.RoomDAOImpl;
+import dao.UserDAOImpl;
 import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
 import model.Reservation;
@@ -52,7 +53,10 @@ public class ReservationManagementPanel extends ManagedCard {
         panel.add(new JLabel("Date to"));
         panel.add(new JLabel("Delete"));
 
-
+        CardChoosingButton button;
+        if (Authorization.getUser() == null) {
+            System.out.println("NO SHIT MAN");
+        }
         for (Reservation r : Authorization.getUser().getReservations()) {
             panel.add(new JLabel(String.valueOf(r.getId())));
             panel.add(new JLabel(String.valueOf(r.getRoom().getId())));
@@ -67,7 +71,13 @@ public class ReservationManagementPanel extends ManagedCard {
             day = r.getToDate().get(Calendar.DAY_OF_MONTH);
             panel.add(new JLabel((String.format("%d/%d/%d", day, month, year))));
 
-            panel.add(new JButton("DELETE"));
+            button = new CardChoosingButton("DELETE", ReservationManagementPanel.class, true);
+            button.addActionListener(e -> {
+                Authorization.getUser().getReservations().remove(r);
+                new UserDAOImpl().update(Authorization.getUser());
+            });
+            panel.add(button);
+
         }
         // Lay out the panel.
         SpringUtilities.makeGrid(panel, Authorization.getUser().getReservations().size() + 1, 5, // rows, cols

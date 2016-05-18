@@ -44,4 +44,8 @@ public class Authorization {
         Authorization.userByEmail = user;
     }
 
+    public static User refreshUser() {
+        return Authorization.userByEmail = new UserDAOImpl().getById(userByEmail.getId());
+    }
+
 }

@@ -16,6 +16,7 @@ public class UserDeleteConstraint extends PermissionConstraint {
     @Override
     public boolean isOk() {
         UserDAOImpl dao = new UserDAOImpl();
-        return dao.delete(ElementId);
+        dao.delete(ElementId);
+        return true;
     }
 }

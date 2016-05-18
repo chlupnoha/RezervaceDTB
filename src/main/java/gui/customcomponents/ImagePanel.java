@@ -29,9 +29,9 @@ public class ImagePanel extends JPanel {
         this.height = height;
 
         try {
-            System.out.println(images.size());
+            //System.out.println(images.size());
             for (Image image : images) {
-                System.out.println(image.getName());
+                //System.out.println(image.getName());
                 bufferedImageQueue.enqueue(ImageIO.read(new File("images/" + image.getName() + ".jpg")));
             }
 
