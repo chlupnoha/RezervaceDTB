@@ -45,6 +45,7 @@ public class ReservationConstraint extends PermissionConstraint {
         RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
 
         User user = Authorization.getUser();
+        System.out.println(user);
 
         Reservation r = new Reservation(new GregorianCalendar(), new GregorianCalendar(), Confirmed.NOT_CONFIRMED, user, room);
         user.getReservations().add(r);

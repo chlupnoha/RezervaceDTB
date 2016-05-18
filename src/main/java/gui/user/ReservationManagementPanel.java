@@ -45,10 +45,16 @@ public class ReservationManagementPanel extends ManagedCard {
 
 
         JPanel centerPanel = new JPanel(null);
+        centerPanel.add(new JLabel("Reservation ID"));
+        centerPanel.add(new JLabel("Room"));
+        centerPanel.add(new JLabel("Date from"));
+        centerPanel.add(new JLabel("Date to"));
+
 
 
         JPanel panel = new JPanel(new SpringLayout());
         for (int i = 0; i < 60; i++) {
+
             JTextField textField = new JTextField(Integer.toString(i));
 
              // Make the 4th field extra big.

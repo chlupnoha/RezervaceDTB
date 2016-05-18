@@ -46,14 +46,20 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+
+
         loggerSetup();
         deleteOldLogs();
 
-        //createIlustrationData();
+        createIlustrationData();
         new DataProvider().fillDatabase();
 
         BookingSystemFrame.getInstance().run();
-
+        try {
+            Authorization.login("email@email.cz", "password");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //tady pak View
 
 
@@ -69,11 +75,7 @@ public class Main {
         addAnother();
         addAnother();
 
-        try {
-            Authorization.login("email@email.cz", "password");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
     }
 
     private static void addAnother() {
