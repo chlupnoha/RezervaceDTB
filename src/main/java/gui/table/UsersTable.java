@@ -5,18 +5,16 @@ import dataProvider.DataProvider;
 import model.User;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 
 public class UsersTable extends JPanel {
 
     public UsersTable() {
-        super(new GridLayout(1, 0));
+        super(new GridLayout(0, 4));
 
         DataProvider dataProvider = new DataProvider();
         dataProvider.fillDatabase();
@@ -24,33 +22,43 @@ public class UsersTable extends JPanel {
         UserDAOImpl userDao = new UserDAOImpl();
         List<User> allUsers = userDao.getAll();
 
+        class AddListeneser implements ActionListener {
 
-        DefaultTableModel dm = new DefaultTableModel();
-        Vector<Object[]> vector = new Vector<>();
-        Vector<Object> vector1 = new Vector<Object>();
+            Long id;
+
+            public AddListeneser(Long id) {
+                this.id = id;
+            }
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserDAOImpl u = new UserDAOImpl();
+
+                // muzeme pracovat s ID
+                // BLA BLA BLA
+            }
+        }
+
 
         allUsers.stream().forEach((u) -> {
-            vector.add(new Object[]{u.getId(), u.getEmail(), u.getRole().toString(), new JButton("no shit")});
+            add(new JLabel(u.getId().toString()));
+            add(new JLabel(u.getEmail().toString()));
+            add(new JLabel(u.getRole().toString()));
+            JButton j = new JButton("delete");
+            j.addActionListener(new AddListeneser(u.getId()));
+            add(j);
         });
-
-        vector1.add("ID");
-        vector1.add("EMAIL");
-        vector1.add("ROLE");
-        vector1.add("ADD");
-
-        dm.setDataVector((Object[][]) vector.toArray(), vector1.toArray());
 
 
         // Append a row
 
-        JTable table = new JTable(dm);
-        table.getColumn("Button").setCellRenderer(new ButtonRenderer());
-        table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
+        //table.getColumn("Button").setCellRenderer(new ButtonRenderer());
+        //table.getColumn("Button").setCellEditor(new ButtonEditor(new JCheckBox()));
         //Create the scroll pane and add the table to it.
-        JScrollPane scrollPane = new JScrollPane(table);
+        //JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this panel.
-        add(scrollPane);
+        //add(scrollPane);
     }
 
     /**
