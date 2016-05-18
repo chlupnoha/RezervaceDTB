@@ -10,24 +10,17 @@ import model.UserRole;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class UserForm extends ManagedCard {
 
     private final JTextField[] fields;
     private final JCheckBox admin;
-    
+
     // Create a form with the specified labels, tooltips, and sizes.
     public UserForm() {
         super(new GridLayout(0, 2));
         String[] labels = {"Email", "Password", "Password again"};
 
-
-        JPanel labelPanel = new JPanel(new GridLayout(labels.length + 1, 1));
-        JPanel fieldPanel = new JPanel(new GridLayout(labels.length + 1, 1));
-        //add(labelPanel, BorderLayout.WEST);
-        //add(fieldPanel, BorderLayout.CENTER);
         fields = new JTextField[labels.length];
 
         for (int i = 0; i < labels.length; i += 1) {
