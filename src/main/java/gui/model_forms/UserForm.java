@@ -40,20 +40,18 @@ public class UserForm extends ManagedCard {
 
         JButton submit = new JButton("Submit Form");
 
-        submit.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(getText(0) + " " + getText(1) + ". " + getText(2) + getAdmin());
-                UserDAOImpl userDao = new UserDAOImpl();
-                if (getText(01).equals(getText(2))) {
-                    UserRole role = getAdmin() ? UserRole.ADMIN : UserRole.GUEST;
-                    userDao.add(new User(getText(0), getText(1), role));
-                    System.out.println("USER ADDED");
-                    
-                    //po pridani redirect na tabulku
-                    new CardChoosingButton("", UsersTable.class).invoke();
-                } else {
-                    System.out.println("Not same password");
-                }
+        submit.addActionListener(e -> {
+            System.out.println(getText(0) + " " + getText(1) + ". " + getText(2) + getAdmin());
+            UserDAOImpl userDao = new UserDAOImpl();
+            if (getText(01).equals(getText(2))) {
+                UserRole role = getAdmin() ? UserRole.ADMIN : UserRole.GUEST;
+                userDao.add(new User(getText(0), getText(1), role));
+                System.out.println("USER ADDED");
+
+                //po pridani redirect na tabulku
+                new CardChoosingButton("", UsersTable.class).invoke();
+            } else {
+                System.out.println("Not same password");
             }
         });
 
