@@ -31,7 +31,7 @@ public class RegistrationConstraint extends PermissionConstraint {
     public boolean isOk() {
 
         JOptionPane.showMessageDialog(BookingSystemFrame.getInstance().getFrame(),
-                "You're succesfully registred with username: !");
+                "You're successfully registered with username: !");
         return true;
     }
 }

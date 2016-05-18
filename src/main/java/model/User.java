@@ -39,10 +39,10 @@ public class User implements Serializable, DataClass {
     private UserRole role;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Reservation> reservations = new HashSet<Reservation>();
+    private Set<Reservation> reservations = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Room> wereThere = new HashSet<Room>();
+    private Set<Room> wereThere = new HashSet<>();
 
     public User() {
 
