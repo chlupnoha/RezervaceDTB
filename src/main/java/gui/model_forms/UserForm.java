@@ -3,6 +3,8 @@ package gui.model_forms;
 
 import dao.UserDAOImpl;
 import gui.ManagedCard;
+import gui.customcomponents.CardChoosingButton;
+import gui.table.UsersTable;
 import model.User;
 import model.UserRole;
 
@@ -15,7 +17,7 @@ public class UserForm extends ManagedCard {
 
     private JTextField[] fields;
     private JCheckBox admin;
-
+    
     // Create a form with the specified labels, tooltips, and sizes.
     public UserForm() {
         super(new GridLayout(0, 2));
@@ -46,6 +48,9 @@ public class UserForm extends ManagedCard {
                     UserRole role = getAdmin() ? UserRole.ADMIN : UserRole.GUEST;
                     userDao.add(new User(getText(0), getText(1), role));
                     System.out.println("USER ADDED");
+                    
+                    //po pridani redirect na tabulku
+                    new CardChoosingButton("", UsersTable.class).invoke();
                 } else {
                     System.out.println("Not same password");
                 }

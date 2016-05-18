@@ -1,10 +1,11 @@
 package gui.table;
 
 import dao.UserDAOImpl;
+import dataProvider.DataProvider;
 import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
 import gui.model_forms.UserForm;
-import gui.permission.DeleteConstraint;
+import gui.permission.UserDeleteConstraint;
 import model.User;
 
 import javax.swing.*;
@@ -15,18 +16,24 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class UsersTable extends ManagedCard {
+    
+    private UserDAOImpl userDao = new UserDAOImpl();
 
     public UsersTable() {
         super(new BorderLayout());
 
-//        DataProvider dataProvider = new DataProvider();
+        DataProvider dataProvider = new DataProvider();
 //        dataProvider.fillDatabase();
-
-        UserDAOImpl userDao = new UserDAOImpl();
+        userDao = new UserDAOImpl();
         List<User> allUsers = userDao.getAll();
 
         DefaultTableModel model = new DefaultTableModel();
-        JTable table = new JTable(model);
+        JTable table = new JTable(model){
+            @Override
+            public boolean isCellEditable(int row, int column) {                
+                    return column==1;               
+            };
+        };
         table.setPreferredScrollableViewportSize(new Dimension(400, 200));
         table.setFillsViewportHeight(true);
 
@@ -40,9 +47,9 @@ public class UsersTable extends ManagedCard {
         // Append a row
         allUsers.stream().forEach((u) -> {
             model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString(), "DELETE", "UPDATE"});
-            userDao.delete(u.getId());
         });
         table.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 JTable target = (JTable) e.getSource();
                 int row = target.getSelectedRow();
@@ -54,23 +61,21 @@ public class UsersTable extends ManagedCard {
                 System.out.println("ID of selected row is " + id);
 
                 if (column == 3) {
-                    //delete
-
-                    new CardChoosingButton("", UsersTable.class, new DeleteConstraint()).invoke(); /// kamo, uprav DeleteConstraint a je to... tadle vec funguje svym zpusobem jako refresh
+                    new CardChoosingButton("", UsersTable.class, new UserDeleteConstraint(id), true).invoke(); 
+                    
                 } else if (column == 4) {
-                    //update
-
-                    new CardChoosingButton("", UserForm.class).invoke();                /// UUUUSE FOR REDIRECT TO ANOTHER FORM, narvi vlastni tridu na update, bude podobna jako ADD
-
+                    //tady staci, kdyz upravi ty data v tabulce ;)
+                    User u = userDao.getById(id);
+                    u.setEmail(table.getValueAt(row, 1).toString());
+                    userDao.update(u);
+                    new CardChoosingButton("", UsersTable.class, true).invoke(); 
                 }
 
             }
         });
 
-
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
-
 
         //Add the scroll pane to this panel.
         add(scrollPane, BorderLayout.CENTER);
@@ -82,4 +87,3 @@ public class UsersTable extends ManagedCard {
 
     }
 }
-
