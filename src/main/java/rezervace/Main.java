@@ -1,7 +1,3 @@
-/*
- * Copyright (C) 2015 Ondřej Skoumal <skoumal.ondra@gmail.com>
- *
- */
 package rezervace;
 
 import dao.*;
@@ -11,9 +7,11 @@ import model.*;
 import utility.Authorization;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.FileHandler;
 import java.util.logging.Handler;
 import java.util.logging.Level;

@@ -1,14 +1,11 @@
-/*
- * Copyright (C) 2015 Ondřej Skoumal <skoumal.ondra@gmail.com>
- *
- */
 package rezervace;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
