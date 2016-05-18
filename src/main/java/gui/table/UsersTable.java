@@ -1,7 +1,6 @@
 package gui.table;
 
 import dao.UserDAOImpl;
-import dataProvider.DataProvider;
 import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
 import gui.model_forms.UserForm;
@@ -77,8 +76,11 @@ public class UsersTable extends ManagedCard {
 
         //Add the scroll pane to this panel.
         add(scrollPane, BorderLayout.CENTER);
-        add(new CardChoosingButton("ADD NEW", UserForm.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
-        add(new CardChoosingButton("BACK", TableController.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
+
+        JPanel p = new JPanel(new GridLayout(0, 2));
+        p.add(new CardChoosingButton("ADD NEW", UserForm.class));
+        p.add(new CardChoosingButton("BACK", TableController.class));      // REDIRECT TO:    UserForm
+        add(p, BorderLayout.PAGE_END);
     }
 
     @Override
