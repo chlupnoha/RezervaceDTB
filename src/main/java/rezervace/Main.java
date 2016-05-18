@@ -5,6 +5,7 @@
 package rezervace;
 
 import dao.*;
+import dataProvider.DataProvider;
 import gui.BookingSystemFrame;
 import model.*;
 import utility.Authorization;
@@ -48,12 +49,13 @@ public class Main {
         loggerSetup();
         deleteOldLogs();
 
-        createIlustrationData();
-
+        //createIlustrationData();
+        new DataProvider().fillDatabase();
 
         BookingSystemFrame.getInstance().run();
 
         //tady pak View
+
 
     }
 

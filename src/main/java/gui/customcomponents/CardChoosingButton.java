@@ -14,21 +14,23 @@ import java.awt.event.ActionListener;
 public class CardChoosingButton extends JButton {
 
     private final Class<? extends ManagedCard> c;
+    private final ButtonActionListener buttonListener;
     private PermissionConstraint constraint;
+
 
     public CardChoosingButton(String text, Class<? extends ManagedCard> c) {
         super(text);
         this.c = c;
-
-        this.addActionListener(new ButtonActionListener());
+        this.buttonListener = new ButtonActionListener();
+        this.addActionListener(buttonListener);
     }
 
     public CardChoosingButton(String text, Class<? extends ManagedCard> c, PermissionConstraint constraint) {
         super(text);
         this.c = c;
         this.constraint = constraint;
-
-        this.addActionListener(new ButtonActionListener());
+        this.buttonListener = new ButtonActionListener();
+        this.addActionListener(buttonListener);
     }
 
     private class ButtonActionListener implements ActionListener {
@@ -39,6 +41,9 @@ public class CardChoosingButton extends JButton {
                 CardManager.getIntance().switchCard(c);
             }
         }
+    }
+    public void invoke() {
+        buttonListener.actionPerformed(null);
     }
 
 

@@ -1,7 +1,10 @@
 package gui.table;
 
 import dao.UserDAOImpl;
-import dataProvider.DataProvider;
+import gui.ManagedCard;
+import gui.customcomponents.CardChoosingButton;
+import gui.model_forms.UserForm;
+import gui.permission.DeleteConstraint;
 import model.User;
 
 import javax.swing.*;
@@ -11,10 +14,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-public class UsersTable extends JPanel {
+public class UsersTable extends ManagedCard {
 
     public UsersTable() {
-        super(new GridLayout(1, 0));
+        super(new BorderLayout());
 
 //        DataProvider dataProvider = new DataProvider();
 //        dataProvider.fillDatabase();
@@ -31,10 +34,12 @@ public class UsersTable extends JPanel {
         model.addColumn("ID");
         model.addColumn("EMAIL");
         model.addColumn("ROLE");
+        model.addColumn("DELETE");
+        model.addColumn("UDPATE");
 
         // Append a row
         allUsers.stream().forEach((u) -> {
-            model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString()});
+            model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString(), "DELETE", "UPDATE"});
             userDao.delete(u.getId());
         });
         table.addMouseListener(new MouseAdapter() {
@@ -44,6 +49,21 @@ public class UsersTable extends JPanel {
                 int column = target.getSelectedColumn();
                 // do some action if appropriate column
                 System.out.println(row + " no shit " + column + ", and value: " + target.getValueAt(row, column));
+
+                Long id = (Long) table.getValueAt(row, 0);
+                System.out.println("ID of selected row is " + id);
+
+                if (column == 3) {
+                    //delete
+
+                    new CardChoosingButton("", UsersTable.class, new DeleteConstraint()).invoke(); /// kamo, uprav DeleteConstraint a je to... tadle vec funguje svym zpusobem jako refresh
+                } else if (column == 4) {
+                    //update
+
+                    new CardChoosingButton("", UserForm.class).invoke();                /// UUUUSE FOR REDIRECT TO ANOTHER FORM, narvi vlastni tridu na update, bude podobna jako ADD
+
+                }
+
             }
         });
 
@@ -51,40 +71,15 @@ public class UsersTable extends JPanel {
         //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
 
+
         //Add the scroll pane to this panel.
-        add(scrollPane);
+        add(scrollPane, BorderLayout.CENTER);
+        add(new CardChoosingButton("ADD NEW", UserForm.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
     }
 
-    /**
-     * Create the GUI and show it. For thread safety, this method should be
-     * invoked from the event-dispatching thread.
-     */
-    private static void createAndShowGUI() {
-//        new DataProvider().fillUser(15);
+    @Override
+    public void setupComponents() {
 
-        //Create and set up the window.
-        JFrame frame = new JFrame("SimpleTableDemo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        UsersTable newContentPane = new UsersTable();
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
-//        frame.setPreferredSize(new Dimension(800, 700));
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
     }
 }
 
