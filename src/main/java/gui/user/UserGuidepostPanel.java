@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class UserGuidepostPanel extends ManagedCard {
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
-    private JButton browseRoomsButton = new CardChoosingButton("Browse rooms", RoomBrowserPanel.class);
+    private JButton browseRoomsButton = new CardChoosingButton("Browse rooms", RoomBrowserPanel.class, true);
     private JButton browseReservationsButton = new CardChoosingButton("Browse reservations", ReservationManagementPanel.class);
     private JButton changePasswordButton = new JButton("Change passowrd");
     private CardChoosingButton adminButton = new CardChoosingButton("Logout", UserLoginPanel.class);

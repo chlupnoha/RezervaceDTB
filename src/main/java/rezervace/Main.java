@@ -68,9 +68,9 @@ public class Main {
     private static void createIlustrationData() {
 
 
-        User u1 = new User("email@email.cz", "password", "dfkjlas", UserRole.ADMIN);
-        UserDAOImpl ruDAO = new UserDAOImpl();
-        ruDAO.add(u1);
+      //  User u1 = new User("email@email.cz", "password", "dfkjlas", UserRole.ADMIN);
+   //     UserDAOImpl ruDAO = new UserDAOImpl();
+    //    ruDAO.add(u1);
 
         addAnother();
         addAnother();

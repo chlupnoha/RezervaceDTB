@@ -39,8 +39,8 @@ public class CardManager {
         cardLayout.show(cards, cardName);
     }
 
-    public final void switchCard(Class<? extends ManagedCard> c) {
-        if (!cachedClasses.containsKey(c.getName())) {
+    public final void switchCard(Class<? extends ManagedCard> c, boolean refresh) {
+        if (!cachedClasses.containsKey(c.getName()) || refresh) {
             try {
                 ManagedCard card = c.newInstance();
                 cards.add(card, c.getName());

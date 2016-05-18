@@ -48,7 +48,7 @@ public class BookingSystemFrame implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        CardManager.getIntance().switchCard(RoomBrowserPanel.class);
+        CardManager.getIntance().switchCard(RoomBrowserPanel.class, false);
         frame.setContentPane(CardManager.getIntance().getCardsPanel());
 
         frame.setPreferredSize(new Dimension(1000, 500));
