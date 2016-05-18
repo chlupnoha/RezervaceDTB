@@ -12,6 +12,10 @@ buildNumber.properties
 
 #NetBeans
 /nbproject/
+nb-configuration.xml	
+nbactions-Add Users.xml	
+nbactions-Gui test.xml	
+nbactions-Hibernate Test.xml	
 
 build/
 nbbuild/
