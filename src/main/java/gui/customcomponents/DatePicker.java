@@ -21,8 +21,12 @@ enum Month {
 
     private int order;
 
-    Month(int order) {
+    private Month(int order) {
         this.order = order;
+    }
+
+    public int getOrder() {
+        return order;
     }
 }
 
@@ -30,6 +34,10 @@ enum Month {
  * Created by marek on 11.5.16.
  */
 public class DatePicker extends JPanel {
+    private JComboBox monthList;
+    private JComboBox dayList;
+    private JComboBox yearList;
+
     public DatePicker() {
         super(new GridLayout(0, 1));
         setupComponents();
@@ -47,18 +55,44 @@ public class DatePicker extends JPanel {
         JComboBox monthList = new JComboBox();
         Arrays.stream(Month.values()).forEach((m) -> monthList.addItem(m));
         add(monthList);
+        this.monthList = monthList;
 
         add(new JLabel("Day:"));
         JComboBox dayList = new JComboBox();
         IntStream.range(1, 13).forEach((i) -> dayList.addItem(i));
         add(dayList);
+        this.dayList = dayList;
 
         add(new JLabel("Year:"));
         JComboBox yearList = new JComboBox();
         IntStream.range(2016, 2017).forEach((i) -> yearList.addItem(i));
         add(yearList);
+        this.yearList = yearList;
 
+    }
 
+    public JComboBox getMonthList() {
+        return monthList;
+    }
+
+    public JComboBox getDayList() {
+        return dayList;
+    }
+
+    public JComboBox getYearList() {
+        return yearList;
+    }
+
+    public int getMonth() {
+        return Month.valueOf(monthList.getSelectedItem().toString()).getOrder();
+    }
+
+    public int getDay() {
+        return (int) dayList.getSelectedItem();
+    }
+
+    public int getYear() {
+        return (int) yearList.getSelectedItem();
     }
 
 }

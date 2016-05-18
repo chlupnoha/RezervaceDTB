@@ -11,6 +11,7 @@ import model.Room;
 import model.User;
 import utility.Authorization;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
@@ -45,9 +46,18 @@ public class ReservationConstraint extends PermissionConstraint {
         RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
 
         User user = Authorization.getUser();
-        System.out.println(user);
 
-        Reservation r = new Reservation(new GregorianCalendar(), new GregorianCalendar(), Confirmed.NOT_CONFIRMED, user, room);
+        int day = datePickerFrom.getDay();
+        int month = datePickerFrom.getMonth();
+        int year = datePickerFrom.getYear();
+        Calendar c = new GregorianCalendar(year, month, day);
+
+        day = datePickerTo.getDay();
+        month = datePickerTo.getMonth();
+        year = datePickerTo.getYear();
+        Calendar c1 = new GregorianCalendar(year, month, day);
+
+        Reservation r = new Reservation(c, c1, Confirmed.NOT_CONFIRMED, user, room);
         user.getReservations().add(r);
         user.getWereThere().add(room);
         room.getWereHere().add(user);
