@@ -35,6 +35,7 @@ public class UsersTable extends JPanel {
         // Append a row
         allUsers.stream().forEach((u) -> {
             model.addRow(new Object[]{u.getId(), u.getEmail(), u.getRole().toString()});
+            userDao.delete(u.getId());
         });
         table.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -42,7 +43,7 @@ public class UsersTable extends JPanel {
                 int row = target.getSelectedRow();
                 int column = target.getSelectedColumn();
                 // do some action if appropriate column
-                System.out.println(row + " no shit " + column);
+                System.out.println(row + " no shit " + column + ", and value: " + target.getValueAt(row, column));
             }
         });
 
@@ -59,7 +60,7 @@ public class UsersTable extends JPanel {
      * invoked from the event-dispatching thread.
      */
     private static void createAndShowGUI() {
-        new DataProvider().fillUser(15);
+//        new DataProvider().fillUser(15);
 
         //Create and set up the window.
         JFrame frame = new JFrame("SimpleTableDemo");
