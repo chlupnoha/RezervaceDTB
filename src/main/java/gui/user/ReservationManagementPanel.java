@@ -52,6 +52,7 @@ public class ReservationManagementPanel extends ManagedCard {
         panel.add(new JLabel("Date from"));
         panel.add(new JLabel("Date to"));
         panel.add(new JLabel("Delete"));
+        panel.add(new JLabel("Update"));
 
         CardChoosingButton button;
         if (Authorization.getUser() == null) {
@@ -78,9 +79,16 @@ public class ReservationManagementPanel extends ManagedCard {
             });
             panel.add(button);
 
+            button = new CardChoosingButton("UPDATE", ReservationManagementPanel.class, true);
+            button.addActionListener(e -> {
+                //Authorization.getUser().getReservations().remove(r);
+                new UserDAOImpl().update(Authorization.getUser());
+            });
+            panel.add(button);
+
         }
         // Lay out the panel.
-        SpringUtilities.makeGrid(panel, Authorization.getUser().getReservations().size() + 1, 5, // rows, cols
+        SpringUtilities.makeGrid(panel, Authorization.getUser().getReservations().size() + 1, 6, // rows, cols
                 50, 0, // initialX, initialY
                 15, 15);// xPad, yPad
         JScrollPane scrollPane = new JScrollPane(panel);
