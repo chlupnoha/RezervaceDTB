@@ -10,12 +10,12 @@ import java.awt.*;
  * Created by marek on 4.5.16.
  */
 public class UserGuidepostPanel extends ManagedCard {
-    private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
-    private JButton browseRoomsButton = new CardChoosingButton("Browse rooms", RoomBrowserPanel.class, true);
-    private JButton browseReservationsButton = new CardChoosingButton("Browse reservations", ReservationManagementPanel.class, true);
-    private JButton changePasswordButton = new JButton("Change passowrd");
-    private CardChoosingButton adminButton = new CardChoosingButton("Logout", UserLoginPanel.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
+    private final JLabel introductoryLabel = new JLabel("Booking Service v1.0");
+    private final JButton browseRoomsButton = new CardChoosingButton("Browse rooms", RoomBrowserPanel.class, true);
+    private final JButton browseReservationsButton = new CardChoosingButton("Browse reservations", ReservationManagementPanel.class, true);
+    private final JButton changePasswordButton = new JButton("Change passowrd");
+    private final CardChoosingButton adminButton = new CardChoosingButton("Logout", UserLoginPanel.class);
+    private final CardChoosingButton registrationButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
 
     {
         setupComponents();

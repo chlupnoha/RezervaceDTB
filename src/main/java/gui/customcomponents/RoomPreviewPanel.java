@@ -12,9 +12,9 @@ import java.awt.*;
  */
 public class RoomPreviewPanel extends JPanel {
 
-    private ImagePanel imagePanel;
+    private final ImagePanel imagePanel;
 
-    private Room room;
+    private final Room room;
 
     public RoomPreviewPanel(Room room) {
         super(new BorderLayout());

@@ -19,13 +19,13 @@ import java.util.Set;
 
 public class ImagePanel extends JPanel {
 
-    private Queue<BufferedImage> bufferedImageQueue = new Queue<>();
+    private final Queue<BufferedImage> bufferedImageQueue = new Queue<>();
     private BufferedImage image;
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     public ImagePanel(Set<Image> images, int width, int height) {
-        this.width = width;
+        this.width = 400;
         this.height = height;
 
         try {

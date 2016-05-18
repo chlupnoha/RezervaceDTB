@@ -20,8 +20,8 @@ import java.util.GregorianCalendar;
 public class ReservationConstraint extends PermissionConstraint {
 
     private Room room;
-    private DatePicker datePickerFrom;
-    private DatePicker datePickerTo;
+    private final DatePicker datePickerFrom;
+    private final DatePicker datePickerTo;
 
     public ReservationConstraint(ErrorLabel errorLabel, Room room, DatePicker datePickerFrom, DatePicker datePickerTo) {
         super(errorLabel);

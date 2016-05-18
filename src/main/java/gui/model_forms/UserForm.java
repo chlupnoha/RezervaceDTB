@@ -15,8 +15,8 @@ import java.awt.event.ActionListener;
 
 public class UserForm extends ManagedCard {
 
-    private JTextField[] fields;
-    private JCheckBox admin;
+    private final JTextField[] fields;
+    private final JCheckBox admin;
     
     // Create a form with the specified labels, tooltips, and sizes.
     public UserForm() {

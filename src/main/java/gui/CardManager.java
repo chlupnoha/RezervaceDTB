@@ -12,10 +12,10 @@ public class CardManager {
 
     private static CardManager instance;
 
-    private Map<String, ManagedCard> cachedClasses = new HashMap<>();
+    private final Map<String, ManagedCard> cachedClasses = new HashMap<>();
 
-    private JPanel cards;
-    private CardLayout cardLayout;
+    private final JPanel cards;
+    private final CardLayout cardLayout;
 
     private CardManager() {
         super();

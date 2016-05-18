@@ -11,9 +11,9 @@ import javax.swing.*;
  */
 public class RegistrationConstraint extends PermissionConstraint {
 
-    private JTextField userNameTextField;
-    private JPasswordField passwordTextField;
-    private JPasswordField passwordAgainTextField;
+    private final JTextField userNameTextField;
+    private final JPasswordField passwordTextField;
+    private final JPasswordField passwordAgainTextField;
 
     public RegistrationConstraint(ErrorLabel errorLabel, JTextField userNameTextField, JPasswordField passwordTextField, JPasswordField passwordAgainTextField) {
         super(errorLabel);

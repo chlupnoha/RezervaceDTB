@@ -9,8 +9,8 @@ import javax.swing.*;
  */
 public class AdminLoginConstraint extends PermissionConstraint {
 
-    private JTextField userNameTextField;
-    private JPasswordField passwordTextField;
+    private final JTextField userNameTextField;
+    private final JPasswordField passwordTextField;
 
     public AdminLoginConstraint(ErrorLabel errorLabel, JTextField userNameTextField, JPasswordField passwordTextField) {
         super(errorLabel);

@@ -14,14 +14,14 @@ import java.awt.*;
  */
 public class AdminLoginPanel extends ManagedCard {
 
-    private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
-    private JLabel userNameLabel = new JLabel("Username");
-    private JTextField userNameTextField = new JTextField(10);
-    private JLabel passwordLabel = new JLabel("Passowrd");
-    private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in as admin!", AdminGuidepostPanel.class, new AdminLoginConstraint(userNameTextField, passwordTextField));
-    private CardChoosingButton adminButton = new CardChoosingButton("User", UserLoginPanel.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
+    private final JLabel introductoryLabel = new JLabel("Booking Service v1.0");
+    private final JLabel userNameLabel = new JLabel("Username");
+    private final JTextField userNameTextField = new JTextField(10);
+    private final JLabel passwordLabel = new JLabel("Passowrd");
+    private final JPasswordField passwordTextField = new JPasswordField(10);
+    private final CardChoosingButton proceedButton = new CardChoosingButton("Sign in as admin!", AdminGuidepostPanel.class, new AdminLoginConstraint(userNameTextField, passwordTextField));
+    private final CardChoosingButton adminButton = new CardChoosingButton("User", UserLoginPanel.class);
+    private final CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
     {
         setupComponents();

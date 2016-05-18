@@ -18,19 +18,19 @@ import java.util.LinkedList;
  */
 public class RoomBrowserPanel extends ManagedCard {
 
-    private JButton nextButton = new JButton("Next");
-    private JButton previousButton = new JButton("Previous");
+    private final JButton nextButton = new JButton("Next");
+    private final JButton previousButton = new JButton("Previous");
 
-    private JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
-    private JButton makeReservationButton = new JButton("Make reservation");
+    private final JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
+    private final JButton makeReservationButton = new JButton("Make reservation");
 
-    private LinkedList<RoomPreviewPanel> previews = new LinkedList<>();
-    private LinkedList<JPanel> reservations = new LinkedList<>();
+    private final LinkedList<RoomPreviewPanel> previews = new LinkedList<>();
+    private final LinkedList<JPanel> reservations = new LinkedList<>();
 
     private boolean state = false;
-    private JPanel cards = new JPanel(new CardLayout());
+    private final JPanel cards = new JPanel(new CardLayout());
     private CardLayout cardLayout;
-    private RoomDAOImpl roomDAO = new RoomDAOImpl();
+    private final RoomDAOImpl roomDAO = new RoomDAOImpl();
     private JPanel centerPanel;
 
     {

@@ -14,17 +14,17 @@ import java.awt.*;
  */
 public class RegistrationPanel extends ManagedCard {
 
-    private ErrorLabel errorLabel = new ErrorLabel();
+    private final ErrorLabel errorLabel = new ErrorLabel();
     private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
-    private JLabel userNameLabel = new JLabel("Username");
-    private JTextField userNameTextField = new JTextField(10);
-    private JLabel passwordLabel = new JLabel("Passowrd");
-    private JPasswordField passwordTextField = new JPasswordField(10);
-    private JLabel passwordAgainLabel = new JLabel("Passowrd again:");
-    private JPasswordField passwordAgainTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Register!", UserLoginPanel.class, new RegistrationConstraint(userNameTextField, passwordTextField, passwordAgainTextField));
-    private CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Login", UserLoginPanel.class);
+    private final JLabel userNameLabel = new JLabel("Username");
+    private final JTextField userNameTextField = new JTextField(10);
+    private final JLabel passwordLabel = new JLabel("Passowrd");
+    private final JPasswordField passwordTextField = new JPasswordField(10);
+    private final JLabel passwordAgainLabel = new JLabel("Passowrd again:");
+    private final JPasswordField passwordAgainTextField = new JPasswordField(10);
+    private final CardChoosingButton proceedButton = new CardChoosingButton("Register!", UserLoginPanel.class, new RegistrationConstraint(userNameTextField, passwordTextField, passwordAgainTextField));
+    private final CardChoosingButton adminButton = new CardChoosingButton("Admin", AdminLoginPanel.class);
+    private final CardChoosingButton registrationButton = new CardChoosingButton("Login", UserLoginPanel.class);
 
     {
         setupComponents();

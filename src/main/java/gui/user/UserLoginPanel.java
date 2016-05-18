@@ -14,15 +14,15 @@ import java.awt.*;
  * Created by marek on 4.5.16.
  */
 public class UserLoginPanel extends ManagedCard {
-    private ErrorLabel errorLabel = new ErrorLabel();
-    private JLabel introductoryLabel = new JLabel("Booking Service v1.0");
-    private JLabel userNameLabel = new JLabel("Username");
-    private JTextField userNameTextField = new JTextField(10);
-    private JLabel passwordLabel = new JLabel("Passowrd");
-    private JPasswordField passwordTextField = new JPasswordField(10);
-    private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(errorLabel, userNameTextField, passwordTextField));
-    private CardChoosingButton adminButton = new CardChoosingButton("Go to simple data APP", TableController.class);
-    private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
+    private final ErrorLabel errorLabel = new ErrorLabel();
+    private final JLabel introductoryLabel = new JLabel("Booking Service v1.0");
+    private final JLabel userNameLabel = new JLabel("Username");
+    private final JTextField userNameTextField = new JTextField(10);
+    private final JLabel passwordLabel = new JLabel("Passowrd");
+    private final JPasswordField passwordTextField = new JPasswordField(10);
+    private final CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(errorLabel, userNameTextField, passwordTextField));
+    private final CardChoosingButton adminButton = new CardChoosingButton("Go to simple data APP", TableController.class);
+    private final CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
     {
         setupComponents();

@@ -17,11 +17,11 @@ import java.util.GregorianCalendar;
 public class UpdateReservationPanel extends JPanel {
 
     private final Reservation reservation;
-    private ReservationDAOImp reservationDAOImp = new ReservationDAOImp();
-    private ErrorLabel errorLabel = new ErrorLabel();
-    private DatePicker datePickerFrom = new DatePicker("FROM");
-    private DatePicker datePickerTo = new DatePicker("TO");
-    private JButton makeReservationButton;
+    private final ReservationDAOImp reservationDAOImp = new ReservationDAOImp();
+    private final ErrorLabel errorLabel = new ErrorLabel();
+    private final DatePicker datePickerFrom = new DatePicker("FROM");
+    private final DatePicker datePickerTo = new DatePicker("TO");
+    private final JButton makeReservationButton;
 
     public UpdateReservationPanel(Reservation reservation) {
         super();

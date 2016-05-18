@@ -12,11 +12,11 @@ import java.awt.*;
  */
 public class RoomReservationPanel extends JPanel {
 
-    private Room room;
-    private ErrorLabel errorLabel = new ErrorLabel();
-    private DatePicker datePickerFrom = new DatePicker("FROM");
-    private DatePicker datePickerTo = new DatePicker("TO");
-    private CardChoosingButton makeReservationButton;
+    private final Room room;
+    private final ErrorLabel errorLabel = new ErrorLabel();
+    private final DatePicker datePickerFrom = new DatePicker("FROM");
+    private final DatePicker datePickerTo = new DatePicker("TO");
+    private final CardChoosingButton makeReservationButton;
 
     public RoomReservationPanel(Room room) {
         super(new BorderLayout());

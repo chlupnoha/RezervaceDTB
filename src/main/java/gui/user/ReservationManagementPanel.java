@@ -17,15 +17,15 @@ import java.util.Calendar;
  * Created by marek on 18.5.16.
  */
 public class ReservationManagementPanel extends ManagedCard {
-    private JButton nextButton = new JButton("Next");
-    private JButton previousButton = new JButton("Previous");
+    private final JButton nextButton = new JButton("Next");
+    private final JButton previousButton = new JButton("Previous");
 
-    private JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
-    private JButton makeReservationButton = new JButton("Back");
+    private final JButton menuButton = new CardChoosingButton("Menu", UserGuidepostPanel.class);
+    private final JButton makeReservationButton = new JButton("Back");
 
 
     private boolean state = false;
-    private JPanel cards = new JPanel(new CardLayout());
+    private final JPanel cards = new JPanel(new CardLayout());
     private CardLayout cardLayout;
 
 
