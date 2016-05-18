@@ -27,9 +27,9 @@ import static org.junit.Assert.assertNotNull;
 /**
  * @author chlupnoha
  */
-public class RezervationDAOImpTest {
+public class ReservationDAOImpTest {
 
-    public RezervationDAOImpTest() {
+    public ReservationDAOImpTest() {
     }
 
     @BeforeClass
@@ -49,7 +49,7 @@ public class RezervationDAOImpTest {
     }
 
     /**
-     * Test of getRezervationByID method, of class RezervationDAOImp.
+     * Test of getRezervationByID method, of class ReservationDAOImp.
      */
 //    @Test
 //    public void testGetRezervationByID() {
@@ -74,7 +74,7 @@ public class RezervationDAOImpTest {
 //        
 //        Reservation rezervation = new Reservation(from, to, Confirmed.CONFIRMED, user, room);
 //        
-//        RezervationDAOImp instance = new RezervationDAOImp();
+//        ReservationDAOImp instance = new ReservationDAOImp();
 //        Reservation result = instance.addRezervation(rezervation);
 //        
 //        System.out.println(result.toString());
@@ -82,7 +82,7 @@ public class RezervationDAOImpTest {
 //        assertNotNull(result.getId());
 //    }
     /**
-     * Test of addRezervation method, of class RezervationDAOImp.
+     * Test of addRezervation method, of class ReservationDAOImp.
      */
     @Test
     public void testAddRezervation() {
@@ -107,20 +107,20 @@ public class RezervationDAOImpTest {
 
         Reservation reservation = new Reservation(from, to, Confirmed.CONFIRMED, addUser, addRoom);
 
-        RezervationDAOImp instance = new RezervationDAOImp();
+        ReservationDAOImp instance = new ReservationDAOImp();
         Reservation result = instance.add(reservation);
 
         assertNotNull(result.getId());
     }
 
 //    /**
-//     * Test of updateRezervation method, of class RezervationDAOImp.
+//     * Test of updateRezervation method, of class ReservationDAOImp.
 //     */
 //    @Test
 //    public void testUpdateRezervation() {
 //        System.out.println("updateRezervation");
 //        Reservation rezervation = null;
-//        RezervationDAOImp instance = new RezervationDAOImp();
+//        ReservationDAOImp instance = new ReservationDAOImp();
 //        Reservation expResult = null;
 //        Reservation result = instance.updateRezervation(rezervation);
 //        assertEquals(expResult, result);
@@ -129,13 +129,13 @@ public class RezervationDAOImpTest {
 //    }
 //
 //    /**
-//     * Test of deleteRezervation method, of class RezervationDAOImp.
+//     * Test of deleteRezervation method, of class ReservationDAOImp.
 //     */
 //    @Test
 //    public void testDeleteRezervation() {
 //        System.out.println("deleteRezervation");
 //        int rezervationId = 0;
-//        RezervationDAOImp instance = new RezervationDAOImp();
+//        ReservationDAOImp instance = new ReservationDAOImp();
 //        boolean expResult = false;
 //        boolean result = instance.deleteRezervation(rezervationId);
 //        assertEquals(expResult, result);
@@ -144,12 +144,12 @@ public class RezervationDAOImpTest {
 //    }
 //
 //    /**
-//     * Test of getAllRezervations method, of class RezervationDAOImp.
+//     * Test of getAllRezervations method, of class ReservationDAOImp.
 //     */
 //    @Test
 //    public void testGetAllRezervations() {
 //        System.out.println("getAllRezervations");
-//        RezervationDAOImp instance = new RezervationDAOImp();
+//        ReservationDAOImp instance = new ReservationDAOImp();
 //        List<Reservation> expResult = null;
 //        List<Reservation> result = instance.getAllRezervations();
 //        assertEquals(expResult, result);

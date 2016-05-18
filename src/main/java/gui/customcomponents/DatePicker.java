@@ -21,7 +21,7 @@ enum Month {
 
     private int order;
 
-    private Month(int order) {
+    Month(int order) {
         this.order = order;
     }
 

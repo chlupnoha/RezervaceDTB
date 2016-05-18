@@ -1,6 +1,6 @@
 package gui.permission;
 
-import dao.RezervationDAOImp;
+import dao.ReservationDAOImp;
 import dao.RoomDAOImpl;
 import dao.UserDAOImpl;
 import gui.customcomponents.DatePicker;
@@ -43,7 +43,7 @@ public class ReservationConstraint extends PermissionConstraint {
 
         UserDAOImpl userDAO = new UserDAOImpl();
         RoomDAOImpl roomDAO = new RoomDAOImpl();
-        RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
+        ReservationDAOImp reservationDAOImp = new ReservationDAOImp();
 
         User user = Authorization.getUser();
 
@@ -62,7 +62,7 @@ public class ReservationConstraint extends PermissionConstraint {
         user.getWereThere().add(room);
         room.getWereHere().add(user);
 
-        rezervationDAOImp.add(r);
+        reservationDAOImp.add(r);
         user = userDAO.update(user);
         Authorization.updateUser(user);
         room = roomDAO.update(room);

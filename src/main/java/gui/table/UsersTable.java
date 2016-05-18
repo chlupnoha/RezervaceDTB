@@ -29,7 +29,7 @@ public class UsersTable extends ManagedCard {
             @Override
             public boolean isCellEditable(int row, int column) {                
                     return column==1;               
-            };
+            }
         };
         table.setPreferredScrollableViewportSize(new Dimension(400, 200));
         table.setFillsViewportHeight(true);

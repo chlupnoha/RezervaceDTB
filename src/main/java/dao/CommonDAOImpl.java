@@ -148,7 +148,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             }
             LOG.log(Level.SEVERE, null, e);
         }
-        return (List<T>) (Object) entities;
+        return (List<T>) entities;
     }
 
     /**
@@ -231,7 +231,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             }
             LOG.log(Level.SEVERE, null, e);
         }
-        return (List<T>) (Object) entities;
+        return (List<T>) entities;
     }
 
 }

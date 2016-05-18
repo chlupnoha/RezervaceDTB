@@ -1,6 +1,6 @@
 package gui.user;
 
-import dao.RezervationDAOImp;
+import dao.ReservationDAOImp;
 import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.DatePicker;
 import gui.customcomponents.ErrorLabel;
@@ -16,16 +16,12 @@ import java.util.GregorianCalendar;
  */
 public class UpdateReservationPanel extends JPanel {
 
-    private RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
     private final Reservation reservation;
+    private ReservationDAOImp reservationDAOImp = new ReservationDAOImp();
     private ErrorLabel errorLabel = new ErrorLabel();
     private DatePicker datePickerFrom = new DatePicker("FROM");
     private DatePicker datePickerTo = new DatePicker("TO");
     private JButton makeReservationButton;
-
-    {
-
-    }
 
     public UpdateReservationPanel(Reservation reservation) {
         super();
@@ -47,7 +43,7 @@ public class UpdateReservationPanel extends JPanel {
             reservation.setFromDate(c);
             reservation.setToDate(c1);
 
-            rezervationDAOImp.update(reservation);
+            reservationDAOImp.update(reservation);
 
             new CardChoosingButton("", ReservationManagementPanel.class, true).invoke();
         });

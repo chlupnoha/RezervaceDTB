@@ -1,7 +1,3 @@
-/*
- * Copyright (C) 2015 Ondřej Skoumal <skoumal.ondra@gmail.com>
- *
- */
 package dao;
 
 import model.Reservation;
@@ -13,15 +9,15 @@ import java.util.logging.Logger;
 /**
  * @author chlupnoha
  */
-public class RezervationDAOImp extends CommonDAOImpl<Reservation> {
+public class ReservationDAOImp extends CommonDAOImpl<Reservation> {
 
-    private static final Logger LOG = Logger.getLogger(RezervationDAOImp.class.getName());
+    private static final Logger LOG = Logger.getLogger(ReservationDAOImp.class.getName());
 
-    public RezervationDAOImp() {
+    public ReservationDAOImp() {
         this(null);
     }
 
-    public RezervationDAOImp(Session session) {
+    public ReservationDAOImp(Session session) {
         super(Reservation.class, session);
     }
 

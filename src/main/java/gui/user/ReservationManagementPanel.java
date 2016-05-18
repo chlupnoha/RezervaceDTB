@@ -1,6 +1,6 @@
 package gui.user;
 
-import dao.RezervationDAOImp;
+import dao.ReservationDAOImp;
 import dao.RoomDAOImpl;
 import dao.UserDAOImpl;
 import gui.ManagedCard;
@@ -46,7 +46,7 @@ public class ReservationManagementPanel extends ManagedCard {
     @Override
     public void setupComponents() {
         RoomDAOImpl roomDAO = new RoomDAOImpl();
-        RezervationDAOImp rezervationDAOImp = new RezervationDAOImp();
+        ReservationDAOImp reservationDAOImp = new ReservationDAOImp();
 
         final JPanel bottomPanel = bottomMenu();
         JPanel topPanel = upperMenu();

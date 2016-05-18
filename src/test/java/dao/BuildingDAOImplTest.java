@@ -79,7 +79,7 @@ public class BuildingDAOImplTest {
 
 
     /**
-     * Test of addRezervation method, of class RezervationDAOImp.
+     * Test of addRezervation method, of class ReservationDAOImp.
      */
     @Test
     public void testAddImageToRezervation() {

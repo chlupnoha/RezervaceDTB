@@ -1,7 +1,4 @@
-/*
- * Copyright (C) 2015 Ondřej Skoumal <skoumal.ondra@gmail.com>
- *
- */
+
 package dao;
 
 import model.Equipment;

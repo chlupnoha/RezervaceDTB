@@ -84,7 +84,6 @@ public class RoomDAOImplTest {
         //test
 
         assertNotNull(result.getId());
-        ;
         assertNotNull(result.getBuilding().getId());
     }
 

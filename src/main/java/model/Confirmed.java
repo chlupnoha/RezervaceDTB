@@ -6,6 +6,6 @@ package model;
 public enum Confirmed {
 
     CONFIRMED,
-    NOT_CONFIRMED;
+    NOT_CONFIRMED
 
 }
