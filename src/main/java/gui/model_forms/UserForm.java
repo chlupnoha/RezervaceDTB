@@ -42,14 +42,14 @@ public class UserForm extends ManagedCard {
                 System.out.println("USER ADDED");
 
                 //po pridani redirect na tabulku
-                new CardChoosingButton("", UsersTable.class).invoke();
+                new CardChoosingButton("", UsersTable.class, true).invoke();
             } else {
                 System.out.println("Not same password");
             }
         });
 
         add(submit);
-        add(new CardChoosingButton("BACK", UsersTable.class), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
+        add(new CardChoosingButton("BACK", UsersTable.class, true), BorderLayout.PAGE_END);      // REDIRECT TO:    UserForm
 
     }
 

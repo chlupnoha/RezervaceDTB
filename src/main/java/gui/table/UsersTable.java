@@ -76,8 +76,8 @@ public class UsersTable extends ManagedCard {
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel p = new JPanel(new GridLayout(0, 2));
-        p.add(new CardChoosingButton("ADD NEW", UserForm.class));
-        p.add(new CardChoosingButton("BACK", TableController.class));      // REDIRECT TO:    UserForm
+        p.add(new CardChoosingButton("ADD NEW", UserForm.class, true));
+        p.add(new CardChoosingButton("BACK", TableController.class, true));
         add(p, BorderLayout.PAGE_END);
     }
 

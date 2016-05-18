@@ -20,7 +20,7 @@ public class Room implements Serializable, DataClass {
     @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE})
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "building_id")
     private Building building;
 
