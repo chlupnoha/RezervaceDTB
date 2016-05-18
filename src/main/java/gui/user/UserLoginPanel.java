@@ -4,6 +4,7 @@ import gui.ManagedCard;
 import gui.customcomponents.CardChoosingButton;
 import gui.customcomponents.ErrorLabel;
 import gui.permission.UserLoginConstraint;
+import gui.table.TableController;
 import gui.table.UsersTable;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class UserLoginPanel extends ManagedCard {
     private JLabel passwordLabel = new JLabel("Passowrd");
     private JPasswordField passwordTextField = new JPasswordField(10);
     private CardChoosingButton proceedButton = new CardChoosingButton("Sign in!", UserGuidepostPanel.class, new UserLoginConstraint(errorLabel, userNameTextField, passwordTextField));
-    private CardChoosingButton adminButton = new CardChoosingButton("Go to simple data APP", UsersTable.class);
+    private CardChoosingButton adminButton = new CardChoosingButton("Go to simple data APP", TableController.class);
     private CardChoosingButton registrationButton = new CardChoosingButton("Sign up!", RegistrationPanel.class);
 
     {
