@@ -29,7 +29,7 @@ public class RoomReservationPanel extends JPanel {
 
 
     public void setupComponents() {
-        final JPanel mainPanel = addUpperMenu();
+        addUpperMenu();
     }
 
     private JPanel addUpperMenu() {

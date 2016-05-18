@@ -1,6 +1,5 @@
 package gui.permission;
 
-import dao.UserDAOImpl;
 import gui.BookingSystemFrame;
 import gui.customcomponents.ErrorLabel;
 
@@ -30,8 +29,6 @@ public class RegistrationConstraint extends PermissionConstraint {
 
     @Override
     public boolean isOk() {
-        UserDAOImpl userDAO = new UserDAOImpl();
-
 
         JOptionPane.showMessageDialog(BookingSystemFrame.getInstance().getFrame(),
                 "You're succesfully registred with username: !");

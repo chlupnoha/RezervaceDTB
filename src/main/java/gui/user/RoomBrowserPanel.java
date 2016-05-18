@@ -40,8 +40,8 @@ public class RoomBrowserPanel extends ManagedCard {
 
     @Override
     public void setupComponents() {
-        final JPanel bottomPanel = bottomMenu();
-        JPanel topPanel = upperMenu();
+        bottomMenu();
+        upperMenu();
 
         RoomPreviewPanel temp;
         RoomReservationPanel temp1;

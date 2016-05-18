@@ -54,7 +54,7 @@ public class UpdateReservationPanel extends JPanel {
 
 
     public void setupComponents() {
-        final JPanel mainPanel = addUpperMenu();
+        addUpperMenu();
     }
 
     private JPanel addUpperMenu() {
