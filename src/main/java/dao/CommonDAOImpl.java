@@ -45,8 +45,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
 
 
     /**
-     * Adds entity to the database. Entity id can be set to specific value, or
-     * null to generate new id, generated id is set to the object.
+     * Entity manager add new entity and assign ID
      *
      * @param entity
      * @return enity if entity was successfully added

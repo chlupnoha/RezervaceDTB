@@ -1,0 +1,28 @@
+//SIMPLE TRIGGER WHEN USER WAS REGISTER
+
+
+//just sample trigger
+
+CREATE TABLE USER_AUDIT(
+    USER_ID INT NOT NULL,
+    ENTRY_DATE TEXT NOT NULL
+);
+
+CREATE OR REPLACE FUNCTION auditlogfunc() RETURNS TRIGGER AS $example_table$
+    BEGIN
+        INSERT INTO USER_AUDIT(USER_ID, ENTRY_DATE) VALUES (new.ID, current_timestamp);
+        RETURN NEW;
+    END;
+$example_table$ LANGUAGE plpgsql;
+
+CREATE TRIGGER example_trigger AFTER INSERT ON USERS
+FOR EACH ROW EXECUTE PROCEDURE auditlogfunc();
+
+INSERT INTO USERS (ID, EMAIL,PASSWORD,ROLE,SALT)
+VALUES (111, 'Paul@gmail.cz', 'testtest', 'GUEST', 'salt' );
+ 
+//VIEW-SAMPLE
+CREATE VIEW view AS
+  SELECT email, 'Users' AS dname FROM users
+  UNION ALL
+  SELECT name, 'Images' AS dname FROM images;
