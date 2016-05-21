@@ -12,11 +12,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Class with common methods of DAOs
+ * Common dao Methods inspiration by Tomas Cerny and Mr. Cemus
  *
  * @param <T>
  */
-public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T> {
+public class CommonDAOImpl<T extends DataClass> implements GenericDAOI<T> {
 
     private static final Logger LOG = Logger.getLogger(CommonDAOImpl.class.getName());
 
@@ -61,7 +61,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             getSession().save(entity);
             tx.commit();
 
-            LOG.log(Level.INFO, "Added {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
+            LOG.log(Level.INFO, "Added {0}: {1}", new Object[]{entityName, entity});
 
         } catch (HibernateException e) {
             if (tx != null) {
@@ -71,6 +71,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             //WE WANT TO PROPAGATER EXCEPTION UPPER, AND MAKE ACTION
             throw e;
         } finally {
+            //CANT BE OPEN MORE THAN 2 SESSION
             getSession().close();
         }
         return entity;
@@ -80,7 +81,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
      * Retrives entity with specified id.
      *
      * @param id Desired id
-     * @return desired entity or null if entity with specified id does not exist
+     * @return desired entity or null 
      */
     @Override
     public T getById(Long id) {
@@ -89,7 +90,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
         }
         try {
             T entity = (T) getSession().get(clazz, id);
-            LOG.log(Level.INFO, "Got {0}: (#{1}) {2}", new Object[]{entityName, entity == null ? "" : entity.getId(), entity});
+            LOG.log(Level.INFO, "Got {0}: {1}", new Object[]{entityName, entity});
             return entity;
         } catch (HibernateException e) {
             LOG.log(Level.SEVERE, null, e);
@@ -98,7 +99,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
     }
 
     /**
-     * Retrieves first entity with specified value in specified column.
+     * Just fetch row
      *
      * @param clazz
      * @param columnName
@@ -117,7 +118,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             List list = q.list();
             entity = (T) (list.isEmpty() ? null : list.get(0));
             tx.commit();
-            LOG.log(Level.INFO, "Got first {1} by {0}: (#{2}) {3}", new Object[]{columnName, entityName, entity == null ? "" : entity.getId(), entity});
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -128,7 +128,7 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
     }
 
     /**
-     * Retrieves all entities from database.
+     * Retrieves all from database.
      *
      * @return list of entities
      */
@@ -140,7 +140,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             tx = getSession().beginTransaction();
             entities = getSession().createQuery("FROM " + entityName).list();
             tx.commit();
-            LOG.log(Level.INFO, "Got all {1} {0}", new Object[]{entityName, entities.size()});
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -153,8 +152,8 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
     /**
      * Updates entity in database.
      *
-     * @param entity Entity to update, with id different form null
-     * @return entity if entity was successfully updated
+     * @param entity Entity to updat
+     * @return entity or null
      */
     @Override
     public T update(T entity) {
@@ -167,7 +166,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             getSession().merge(entity);
             tx.commit();
 
-            LOG.log(Level.INFO, "Updated {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -178,10 +176,10 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
     }
 
     /**
-     * Deletes entity from database.
+     * Deletes entity with specific Id
      *
-     * @param id Id of entity to delete, can't be null
-     * @return true if entity was successfully deleted
+     * @param id Id of entity to delete
+     * @return true or false
      */
     @Override
     public boolean delete(Long id) {
@@ -194,7 +192,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             T entity = (T) getSession().get(clazz, id);
             getSession().delete(entity);
             tx.commit();
-            LOG.log(Level.INFO, "Deleted {0}: (#{1}) {2}", new Object[]{entityName, entity.getId(), entity});
             return true;
         } catch (HibernateException e) {
             if (tx != null) {
@@ -207,11 +204,12 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
 
 
     /**
-     * Retrieves all entities with specified value in specified column.
+     * Retrieves all
      *
+     * @param clazz
      * @param columnName
      * @param value
-     * @return list of entities
+     * @return list 
      */
     @Override
     public List<T> getAllByColumn(Class<T> clazz, String columnName, String value) {
@@ -223,7 +221,6 @@ public class CommonDAOImpl<T extends DataClass> implements GenericDAOInterface<T
             q.setParameter("value", value);
             entities = q.list();
             tx.commit();
-            LOG.log(Level.INFO, "Got all {2} {1} by {0}", new Object[]{columnName, entityName, entities.size()});
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();

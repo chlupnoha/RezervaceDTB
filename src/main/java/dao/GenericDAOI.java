@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by marek on 6.5.16.
  */
-public interface GenericDAOInterface<T> {
+public interface GenericDAOI<T> {
 
     T add(T entity);
 
