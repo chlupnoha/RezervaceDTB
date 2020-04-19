@@ -5,7 +5,6 @@ package gui.customcomponents;
  */
 
 import model.Image;
-import sun.misc.Queue;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,11 +14,12 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.PriorityQueue;
 import java.util.Set;
 
 public class ImagePanel extends JPanel {
 
-    private final Queue<BufferedImage> bufferedImageQueue = new Queue<>();
+    private final PriorityQueue<BufferedImage> bufferedImageQueue = new PriorityQueue<>();
     private BufferedImage image;
     private final int width;
     private final int height;
@@ -32,7 +32,7 @@ public class ImagePanel extends JPanel {
             //System.out.println(images.size());
             for (Image image : images) {
                 //System.out.println(image.getName());
-                bufferedImageQueue.enqueue(ImageIO.read(new File("images/" + image.getName() + ".jpg")));
+                bufferedImageQueue.add(ImageIO.read(new File("images/" + image.getName() + ".jpg")));
             }
 
         } catch (IOException ex) {
@@ -40,23 +40,15 @@ public class ImagePanel extends JPanel {
         }
 
         if (!bufferedImageQueue.isEmpty()) {
-            try {
-                image = bufferedImageQueue.dequeue();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            image = bufferedImageQueue.remove();
         }
 
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                bufferedImageQueue.enqueue(image);
-                try {
-                    image = bufferedImageQueue.dequeue();
-                    repaint();
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
+                bufferedImageQueue.add(image);
+                image = bufferedImageQueue.remove();
+                repaint();
             }
 
             @Override
